@@ -37,11 +37,24 @@ export default function Combate(props: Props) {
               </div>
               <div>
                 <b className="text-red-600">Movimento</b>{" "}
-                {props.Personagem.movimento} ({props.Personagem.movimento/1.5} □)
+                {props.Personagem.movimento} ({props.Personagem.movimento / 1.5}{" "}
+                □)
               </div>
             </div>
             <div className="w-full flex flex-col gap-2">
-                <h1 className="text-center font-bold text-red-600 text-">Armas</h1>
+              <b className="text-center text-red-600 text-">
+                Armas
+              </b>
+              <ul className="list-disc text-red-600">
+                {props.Personagem.armas?.map((arma, index) => {
+                  return (
+                    <li key={index}>
+                      <b>{arma.nome}</b>
+                      {/* adicionar componente popover com info da arma */}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </AccordionDetails>
