@@ -8,7 +8,7 @@ export const Personagens: Personagem[] = [
         raca: 'Hobbit',
         nivel: 1,
         pv: 8,
-        pm: 0,
+        pm: 10,
         atributos: [
             {
                 nome: 'Força',
