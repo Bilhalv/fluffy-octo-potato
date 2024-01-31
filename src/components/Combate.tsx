@@ -1,7 +1,8 @@
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import Personagem from "../data/constructors/Personagem";
-import React, { useState } from "react";
-import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
+import React from "react";
+import { ArrowDropUp } from "@mui/icons-material";
+import { PopoverComponent } from "./Popovers";
 
 interface Props {
   Personagem: Personagem;
@@ -42,15 +43,14 @@ export default function Combate(props: Props) {
               </div>
             </div>
             <div className="w-full flex flex-col gap-2">
-              <b className="text-center text-red-600 text-">
-                Armas
-              </b>
+              <b className="text-center text-red-600 text-">Armas</b>
               <ul className="list-disc text-red-600">
                 {props.Personagem.armas?.map((arma, index) => {
                   return (
                     <li key={index}>
-                      <b>{arma.nome}</b>
-                      {/* adicionar componente popover com info da arma */}
+                      <b>
+                        <PopoverComponent data={arma} />
+                      </b>
                     </li>
                   );
                 })}

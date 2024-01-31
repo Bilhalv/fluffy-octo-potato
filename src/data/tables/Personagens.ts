@@ -40,7 +40,7 @@ export const Personagens: Personagem[] = [
         armas: [
             {
                 nome: 'Adaga',
-                desc: '1d4',
+                desc: 'ADAGA MUITO PICA HEIN',
                 dano: '1d4',
                 acerto: 2,
                 crit: '19-20/x2'

@@ -8,7 +8,7 @@ type info = {
     desc: string;
 }
 
-type arma = info & {
+export type arma = info & {
     dano: string;
     acerto: number;
     crit: string;
@@ -16,7 +16,7 @@ type arma = info & {
 
 type acoes = 'Livre' | 'Padrão' | 'Movimento' | 'Reação' | 'Completa'
 
-type poder = info & {
+export type poder = info & {
     acao: acoes;
     pm?: number;
 }
@@ -33,7 +33,7 @@ type escolas = 'Abjuração' | 'Adivinhação' | 'Convocação' | 'Encantamento'
 
 type resistencias = 'Vontade' | 'Fortitude' | 'Reflexos'
 
-type magia = info & {
+export type magia = info & {
     circulo: number;
     classificacao: classificacoes;
     escola: escolas;
