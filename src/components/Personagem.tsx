@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Personagem from "../data/constructors/Personagem";
 import { Avatar, LinearProgress, Popover } from "@mui/material";
 import Bar from "./Bar";
+import Combate from "./Combate";
 
 interface Props {
   Personagem: Personagem;
@@ -38,7 +39,7 @@ export default function PersonagemBlock(props: Props) {
               cor={"Vermelha"}
             />
           </div>
-          <div className="flex flex-col text-center">
+          <div className="flex flex-col text-center border-b border-black pb-2 border-opacity-15">
             <h1>PM</h1>
             <Bar
               Atual={pmAtual}
@@ -46,6 +47,31 @@ export default function PersonagemBlock(props: Props) {
               setAtual={setPmAtual}
               cor={"Azul"}
             />
+          </div>
+          <div className="mt-2 grid grid-flow-col gap-2 w-fit mx-auto border rounded-xl desktop:grid-rows-none grid-rows-2">
+            {props.Personagem.atributos.map((atributo, index) => {
+              return (
+                <div key={index} className="flex justify-between px-6">
+                  <b className="text-red-600">
+                    {atributo.nome.substring(0, 3).toUpperCase()}
+                  </b>
+                  <h1>
+                    {atributo.valor >= 0
+                      ? "+" + atributo.valor
+                      : atributo.valor}
+                  </h1>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-2 p-2 border-t border-black border-opacity-15">
+            <Combate Personagem={props.Personagem} />
+          </div>
+          <div className="mt-2 p-2 border-t border-black border-opacity-15">
+            {/* accordion de Poderes */}
+          </div>
+          <div className="mt-2 p-2 border-t border-black border-opacity-15">
+            {/* accordion de Magias */}
           </div>
         </div>
       </div>

@@ -7,36 +7,36 @@ export const Personagens: Personagem[] = [
         classe: 'Ladino',
         raca: 'Hobbit',
         nivel: 1,
-        pv: 8,
+        pv: 50,
         pm: 10,
         atributos: [
             {
                 nome: 'Força',
-                valor: 8
+                valor: 2
             },
             {
                 nome: 'Destreza',
-                valor: 16
+                valor: 4
             },
             {
                 nome: 'Constituição',
-                valor: 12
+                valor: 1
             },
             {
                 nome: 'Inteligência',
-                valor: 10
+                valor: 0
             },
             {
                 nome: 'Sabedoria',
-                valor: 14
+                valor: 2
             },
             {
                 nome: 'Carisma',
-                valor: 10
+                valor: -2
             }
         ],
         defesa: 14,
-        movimento: 6,
+        movimento: 9,
         armas: [
             {
                 nome: 'Adaga',

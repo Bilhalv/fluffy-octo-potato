@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         "bg-t20": "url('/bgT20.jpg')"   
+      },
+      screens: {
+        desktop: "1024px",
       }
     },
   },
