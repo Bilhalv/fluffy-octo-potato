@@ -31,15 +31,7 @@ export function DefaultPopover({ titulo, content }: defaultProps) {
         anchorEl={anchorEl}
         onClose={handleClose}
       >
-        <Paper
-          sx={{
-            paddingX: "20px",
-            paddingY: "5px",
-            maxWidth: "300px",
-          }}
-        >
-          {content}
-        </Paper>
+        <Paper>{content}</Paper>
       </Popover>
     </>
   );
@@ -48,6 +40,35 @@ export function DefaultPopover({ titulo, content }: defaultProps) {
 export function PopoverComponent({ data }: { data: arma | poder | magia }) {
   let content: React.JSX.Element;
   let titulo: string = data.nome;
+
+  type classificacoes = "Arcana" | "Divina" | "Universal";
+
+  type escolas =
+    | "Abjuração"
+    | "Adivinhação"
+    | "Convocação"
+    | "Encantamento"
+    | "Evocação"
+    | "Ilusão"
+    | "Necromancia"
+    | "Transmutação";
+
+  const selectClassificacao: Record<classificacoes, string> = {
+    Arcana: "bg-magia_arcana",
+    Divina: "bg-magia_divina",
+    Universal: "bg-magia_universal",
+  };
+
+  const selectEscola: Record<escolas, string> = {
+    Abjuração: "/magias/escolas/abjuracao.svg",
+    Adivinhação: "/magias/escolas/adivinhacao.svg",
+    Convocação: "/magias/escolas/convocacao.svg",
+    Encantamento: "/magias/escolas/encantamento.svg",
+    Evocação: "/magias/escolas/evocacao.svg",
+    Ilusão: "./magias/escolas/ilusao.svg",
+    Necromancia: "/magias/escolas/necromancia.svg",
+    Transmutação: "/magias/escolas/transmutacao.svg",
+  };
 
   switch (true) {
     case "crit" in data:
@@ -73,8 +94,63 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
     case "circulo" in data:
       content = (
         //magia
-        <div>
-          {data.desc}, {data.acao}, {data.circulo}
+        <div className="bg-bg-t20 px-5 py-2 border-4 border-red-600 border-opacity-25 rounded-sm">
+          <div className="flex justify-between items-center">
+            <p className="flex flex-col">
+              <p className="text-center">
+                <b className="text-red-600 bg-magia_arcana">{data.nome}</b>
+              </p>
+              <div className="flex flex-wrap text-white text-sm justify-evenly gap-2">
+                <p className="flex gap-2">
+                  <img
+                    src="/magias/dados/execucao.svg"
+                    className="w-5 h-5 inline-block"
+                  />
+                  <p>{data.acao}</p>
+                </p>
+                <p className="flex gap-2">
+                  <img
+                    src="/magias/dados/alcance.svg"
+                    className="w-5 h-5 inline-block"
+                  />
+                  <p>{data.alcance}</p>
+                </p>
+                <p className="flex gap-2">
+                  <img
+                    src="/magias/dados/duracao.svg"
+                    className="w-5 h-5 inline-block"
+                  />
+                  <p>{data.duracao}</p>
+                </p>
+                <p className="flex gap-2">
+                  <img
+                    src="/magias/dados/resistencia.svg"
+                    className="w-5 h-5 inline-block"
+                  />
+                  <p>{data.resistencia}</p>
+                </p>
+                <p className="flex gap-2">
+                  <img
+                    src="/magias/dados/alvo.svg"
+                    className="w-5 h-5 inline-block"
+                  />
+                  <p>{data.alvo_area}</p>
+                </p>
+              </div>
+            </p>
+            <p
+              className={
+                selectClassificacao[data.classificacao] +
+                " w-14 h-14 flex bg-center bg-no-repeat bg-cover p-3"
+              }
+            >
+              <img src={selectEscola[data.escola as escolas]} />
+              <p className="text-white text-xs font-bold">1</p>
+            </p>
+          </div>
+          <div className="bg-white bg-opacity-75 p-2 rounded-xl">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;{data.desc}.</p>
+          </div>
         </div>
       );
       break;
@@ -85,12 +161,13 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
           <b className="text-red-600">
             {data.nome} {data.acao && `(${data.acao})`}
           </b>
-          <div>
-            &nbsp;&nbsp;&nbsp;&nbsp;{data.desc}.
-          </div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;{data.desc}.</div>
         </div>
       );
-      titulo = (data.pm ? `${data.pm} PM `:'') + data.nome + (data.acao ? ` (${data.acao})` : "");
+      titulo =
+        (data.pm ? `${data.pm} PM ` : "") +
+        data.nome +
+        (data.acao ? ` (${data.acao})` : "");
       break;
   }
 
