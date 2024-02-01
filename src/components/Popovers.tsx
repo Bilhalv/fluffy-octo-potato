@@ -35,6 +35,7 @@ export function DefaultPopover({ titulo, content }: defaultProps) {
           sx={{
             paddingX: "20px",
             paddingY: "5px",
+            maxWidth: "300px",
           }}
         >
           {content}
@@ -46,6 +47,7 @@ export function DefaultPopover({ titulo, content }: defaultProps) {
 
 export function PopoverComponent({ data }: { data: arma | poder | magia }) {
   let content: React.JSX.Element;
+  let titulo: string = data.nome;
 
   switch (true) {
     case "crit" in data:
@@ -80,11 +82,17 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
       content = (
         //poder
         <div>
-          {data.desc}, {data.acao}
+          <b className="text-red-600">
+            {data.nome} {data.acao && `(${data.acao})`}
+          </b>
+          <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;{data.desc}.
+          </div>
         </div>
       );
+      titulo = (data.pm ? `${data.pm} PM `:'') + data.nome + (data.acao ? ` (${data.acao})` : "");
       break;
   }
 
-  return <DefaultPopover titulo={data.nome} content={content} />;
+  return <DefaultPopover titulo={titulo} content={content} />;
 }

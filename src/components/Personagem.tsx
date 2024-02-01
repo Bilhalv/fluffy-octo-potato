@@ -3,6 +3,7 @@ import Personagem from "../data/constructors/Personagem";
 import { Avatar, LinearProgress, Popover } from "@mui/material";
 import Bar from "./Bar";
 import Combate from "./Combate";
+import Poderes from "./Poderes";
 
 interface Props {
   Personagem: Personagem;
@@ -68,7 +69,7 @@ export default function PersonagemBlock(props: Props) {
             <Combate Personagem={props.Personagem} />
           </div>
           <div className="mt-2 p-2 border-t border-black border-opacity-15">
-            {/* accordion de Poderes */}
+            <Poderes poder={[...(props.Personagem.poderes ?? [])]} />
           </div>
           <div className="mt-2 p-2 border-t border-black border-opacity-15">
             {/* accordion de Magias */}
