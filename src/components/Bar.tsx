@@ -71,13 +71,16 @@ export default function Bar(props: Props) {
             padding: "10px",
             display: "flex",
             flexDirection: "column",
-            bgcolor: "rgba(255, 125, 125, 0.9)",
+            bgcolor: ( props.cor === "Azul"? "rgba(125, 125, 255, 0.9)" :"rgba(255, 125, 125, 0.9)"),
             color: "white",
+            gap: "10px",
+            alignItems: "center",
+            borderRadius: "20px",
           },
         }}
       >
         <input
-          className="w-1/2 mx-auto rounded-xl bg-red-500 border-2 border-red-400"
+          className={"w-1/2 mx-auto rounded-xl border-2 "+ (props.cor === "Azul" ? "border-blue-500 bg-blue-500" : "border-red-500 bg-red-500")}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               changeStatus(num);
@@ -86,7 +89,7 @@ export default function Bar(props: Props) {
           onChange={(e) => setNum(e.target.value)}
         />
         <button type="submit" onClick={() => changeStatus(num)}
-        className="bg-red-500 hover:bg-red-600 rounded-xl w-fit ">
+        className={"rounded-xl w-fit px-2 "+ (props.cor !== "Azul" ? "bg-red-500 hover:bg-red-600": "bg-blue-500 hover:bg-blue-600")}>
           confirmar
         </button>
       </Popover>

@@ -16,39 +16,55 @@ export default function PersonagemBlock(props: Props) {
   return (
     <>
       <div className="bg-white bg-opacity-75 p-7 rounded-2xl gap-3">
-        <div>
-          <div className="flex justify-between text-gray-500">
-            <h1>{props.Personagem.player}</h1>
-            <h1>{props.Personagem.classe}</h1>
-            <h1>{props.Personagem.nivel}</h1>
-            <h1>{props.Personagem.raca}</h1>
-            <h1>{props.Personagem.persona}</h1>
-          </div>
-          <Avatar
-            sx={{
-              width: 100,
-              height: 100,
-              margin: "auto",
-            }}
-            src={props.Personagem.img}
-          />
-          <div className="flex flex-col text-center">
-            <h1>PV</h1>
-            <Bar
-              Atual={pvAtual}
-              Max={props.Personagem.pv}
-              setAtual={setPvAtual}
-              cor={"Vermelha"}
-            />
-          </div>
-          <div className="flex flex-col text-center border-b border-black pb-2 border-opacity-15">
-            <h1>PM</h1>
-            <Bar
-              Atual={pmAtual}
-              Max={props.Personagem.pm}
-              setAtual={setPmAtual}
-              cor={"Azul"}
-            />
+        <div className="w-full">
+          <div className="flex w-full border-b border-black pb-2 border-opacity-15">
+            <div className="hidden desktop:block mr-5">
+              <Avatar
+                sx={{
+                  width: 200,
+                  height: 200,
+                  margin: "auto",
+                }}
+                src={props.Personagem.img}
+              />
+            </div>
+            <div className="w-full flex flex-col justify-evenly">
+              <div className="flex justify-between text-gray-500">
+                <h1>{props.Personagem.player}</h1>
+                <h1>{props.Personagem.classe}</h1>
+                <h1>{props.Personagem.nivel}</h1>
+                <h1>{props.Personagem.raca}</h1>
+                <h1>{props.Personagem.persona}</h1>
+              </div>
+              <div className="desktop:hidden">
+                <Avatar
+                  sx={{
+                    width: 100,
+                    height: 100,
+                    margin: "auto",
+                  }}
+                  src={props.Personagem.img}
+                />
+              </div>
+              <div className="flex flex-col text-center">
+                <h1>PV</h1>
+                <Bar
+                  Atual={pvAtual}
+                  Max={props.Personagem.pv}
+                  setAtual={setPvAtual}
+                  cor={"Vermelha"}
+                />
+              </div>
+              <div className="flex flex-col text-center">
+                <h1>PM</h1>
+                <Bar
+                  Atual={pmAtual}
+                  Max={props.Personagem.pm}
+                  setAtual={setPmAtual}
+                  cor={"Azul"}
+                />
+              </div>
+            </div>
           </div>
           <div className="mt-2 grid grid-flow-col gap-2 w-fit mx-auto border rounded-xl desktop:grid-rows-none grid-rows-2">
             {props.Personagem.atributos.map((atributo, index) => {
