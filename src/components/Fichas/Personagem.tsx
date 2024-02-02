@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Personagem from "../data/constructors/Personagem";
+import Personagem from "../../data/constructors/Personagem";
 import { Avatar } from "@mui/material";
-import Bar from "./Bar";
-import Poderes from "./Poderes";
-import Magias from "./Magias";
+import Bar from "../Gerais/Bar";
+import Poderes from "../Gerais/Poderes";
+import Magias from "../Gerais/Magias";
 
 interface Props {
   Personagem: Personagem;
