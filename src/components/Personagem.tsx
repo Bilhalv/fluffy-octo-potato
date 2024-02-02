@@ -15,87 +15,72 @@ export default function PersonagemBlock(props: Props) {
   const [pmAtual, setPmAtual] = useState<number>(props.Personagem.pm);
   return (
     <>
-      <div className="bg-white bg-opacity-75 p-7 rounded-2xl gap-3">
+      <div className="bg-white bg-opacity-75 p-7 rounded-2xl gap-3 desktop:w-1/4 w-full">
         <div className="w-full">
-          <div className="flex w-full border-b border-black pb-2 border-opacity-15">
-            <div className="hidden desktop:block mr-5">
-              <Avatar
-                sx={{
-                  width: 200,
-                  height: 200,
-                  margin: "auto",
-                }}
-                src={props.Personagem.img}
-              />
-            </div>
-            <div className="w-full flex flex-col justify-evenly">
-              <div className="flex justify-between text-gray-500">
-                <h1>{props.Personagem.player}</h1>
-                <h1>{props.Personagem.classe}</h1>
-                <h1>{props.Personagem.nivel}</h1>
-                <h1>{props.Personagem.raca}</h1>
-                <h1>{props.Personagem.persona}</h1>
-              </div>
-              <div className="desktop:hidden">
-                <Avatar
-                  sx={{
-                    width: 100,
-                    height: 100,
-                    margin: "auto",
-                  }}
-                  src={props.Personagem.img}
-                />
-              </div>
-              <div className="flex flex-col text-center">
-                <h1>PV</h1>
-                <Bar
-                  Atual={pvAtual}
-                  Max={props.Personagem.pv}
-                  setAtual={setPvAtual}
-                  cor={"Vermelha"}
-                />
-              </div>
-              <div className="flex flex-col text-center">
-                <h1>PM</h1>
-                <Bar
-                  Atual={pmAtual}
-                  Max={props.Personagem.pm}
-                  setAtual={setPmAtual}
-                  cor={"Azul"}
-                />
-              </div>
-            </div>
+
+        <Avatar
+          sx={{ width: 175, height: 175, margin: "auto" }}
+          src={props.Personagem.img}
+          />
           </div>
-          <div className="mt-2 grid grid-flow-col gap-2 w-fit mx-auto border rounded-xl desktop:grid-rows-none grid-rows-2">
-            {props.Personagem.atributos.map((atributo, index) => {
-              return (
-                <div key={index} className="flex justify-between px-6">
-                  <b className="text-red-600">
-                    {atributo.nome.substring(0, 3).toUpperCase()}
-                  </b>
-                  <h1>
-                    {atributo.valor >= 0
-                      ? "+" + atributo.valor
-                      : atributo.valor}
-                  </h1>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-2 p-2 border-t border-black border-opacity-15">
-            <Combate Personagem={props.Personagem} />
-          </div>
-          {props.Personagem.poderes && (
-            <div className="mt-2 p-2 border-t border-black border-opacity-15">
-              <Poderes poder={[...props.Personagem.poderes]} />
-            </div>
-          )}
-          {props.Personagem.magias && (
-            <div className="mt-2 p-2 border-t border-black border-opacity-15">
-              <Magias magia={[...props.Personagem.magias]} />
-            </div>
-          )}
+        <div className="flex flex-col gap-2 my-2">
+          <Bar
+            Atual={pvAtual}
+            Max={props.Personagem.pv}
+            setAtual={setPvAtual}
+            cor={"Vermelha"}
+          />
+          <Bar
+            Atual={pmAtual}
+            Max={props.Personagem.pm}
+            setAtual={setPmAtual}
+            cor={"Azul"}
+          />
         </div>
+        <div className="flex justify-between font-bold text-xl text-red-700">
+          <p>{props.Personagem.persona}</p>
+          <p>{props.Personagem.nivel}</p>
+        </div>
+        <div className="text-gray-500 italic">
+          <p>
+            {props.Personagem.raca} {props.Personagem.classe} (
+            {props.Personagem.player})
+          </p>
+        </div>
+        <div className="flex justify-evenly border-y-2 border-red-600 gap-2 text-sm flex-wrap">
+          {props.Personagem.atributos.map((atributo, index) => {
+            return (
+              <div key={index} className="flex gap-1">
+                <p className="text-red-600">
+                  {atributo.nome.substring(0, 3).toUpperCase()}
+                </p>
+                <p>
+                  {atributo.valor >= 0 ? "+" + atributo.valor : atributo.valor}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex flex-col gap-2">
+          <p className="flex gap-2">
+            <p className="text-red-600">Defesa</p>
+            {props.Personagem.defesa}
+          </p>
+          <p className="flex gap-2">
+            <p className="text-red-600">Morte</p>-
+            {props.Personagem.pv / 2 < 10 ? 10 : props.Personagem.pv / 2}
+          </p>
+          <p className="flex gap-2">
+            <p className="text-red-600">Movimento</p>
+            {props.Personagem.movimento}m ({props.Personagem.movimento / 1.5}□)
+          </p>
+        </div>
+        {props.Personagem.poderes && (
+          <Poderes poder={[...props.Personagem.poderes]} />
+        )}
+        {props.Personagem.magias && (
+          <Magias magia={[...props.Personagem.magias]} />
+        )}
       </div>
     </>
   );

@@ -32,7 +32,7 @@ export default function Bar(props: Props) {
   return (
     <>
       <button
-        className="relative cursor-pointer select-none"
+        className="relative cursor-pointer select-none w-full"
         onClick={(e) => openPopover(e)}
       >
         <div className="z-10">
