@@ -13,7 +13,10 @@ module.exports = {
       },
       screens: {
         desktop: "1024px",
-      }
+      },
+      fontFamily: {
+        tormenta: ["tormenta", "sans-serif"],
+      },
     },
   },
   plugins: [],
