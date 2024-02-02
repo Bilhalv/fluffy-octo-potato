@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Personagem from "../data/constructors/Personagem";
-import { Avatar, LinearProgress, Popover } from "@mui/material";
+import { Avatar } from "@mui/material";
 import Bar from "./Bar";
-import Combate from "./Combate";
 import Poderes from "./Poderes";
 import Magias from "./Magias";
 
@@ -17,12 +16,11 @@ export default function PersonagemBlock(props: Props) {
     <>
       <div className="bg-white bg-opacity-75 p-7 rounded-2xl gap-3 desktop:w-1/4 w-full">
         <div className="w-full">
-
-        <Avatar
-          sx={{ width: 175, height: 175, margin: "auto" }}
-          src={props.Personagem.img}
+          <Avatar
+            sx={{ width: 175, height: 175, margin: "auto" }}
+            src={props.Personagem.img}
           />
-          </div>
+        </div>
         <div className="flex flex-col gap-2 my-2">
           <Bar
             Atual={pvAtual}
