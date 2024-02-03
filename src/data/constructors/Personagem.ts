@@ -23,7 +23,8 @@ export type poder = info & {
 
 //tipos para magias
 
-type aprimoramento = info & {
+type aprimoramento = {
+    desc: string;
     custo: number;
 }
 
@@ -42,7 +43,7 @@ export type magia = info & {
     alcance: string;
     duracao: string;
     alvo_area: string;
-    resistencia: resistencias;
+    resistencia?: resistencias;
 }
 
 type Personagem = {

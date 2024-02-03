@@ -12,6 +12,7 @@ type rolagem = {
   dados: number;
   lados: number;
   bonus: number;
+  tipo?: string;
 };
 
 export type ataque = {
@@ -30,7 +31,8 @@ export type poder = info & {
 
 //tipos para magias
 
-type aprimoramento = info & {
+type aprimoramento = {
+  desc: string;
   custo: number;
 };
 
@@ -57,7 +59,7 @@ export type magia = info & {
   alcance: string;
   duracao: string;
   alvo_area: string;
-  resistencia: resistencias;
+  resistencia?: resistencias;
 };
 
 type pericia = {
@@ -71,7 +73,7 @@ export type NPC = {
   nd: number;
   categoria: string;
   tamanho: string;
-  tipo: string;
+  tipo?: string;
   pv: number;
   pm?: number;
   iniciativa: number;

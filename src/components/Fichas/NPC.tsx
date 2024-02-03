@@ -43,7 +43,8 @@ export default function NPCBlock(props: Props) {
         </div>
         <div className="text-gray-500 italic">
           <p>
-            {props.NPC.categoria} {props.NPC.tamanho} ({props.NPC.tipo})
+            {props.NPC.categoria} {props.NPC.tamanho}{" "}
+            {props.NPC.tipo && `(${props.NPC.tipo})`}
           </p>
         </div>
         <div className="flex justify-evenly border-y-2 border-red-600 gap-2 text-sm flex-wrap">

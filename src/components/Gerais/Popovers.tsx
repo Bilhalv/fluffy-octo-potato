@@ -122,13 +122,15 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
                   />
                   <p>{data.duracao}</p>
                 </p>
-                <p className="flex gap-2">
-                  <img
-                    src="/magias/dados/resistencia.svg"
-                    className="w-5 h-5 inline-block"
-                  />
-                  <p>{data.resistencia}</p>
-                </p>
+                {data.resistencia && (
+                  <p className="flex gap-2">
+                    <img
+                      src="/magias/dados/resistencia.svg"
+                      className="w-5 h-5 inline-block"
+                    />
+                    <p>{data.resistencia}</p>
+                  </p>
+                )}
                 <p className="flex gap-2">
                   <img
                     src="/magias/dados/alvo.svg"
