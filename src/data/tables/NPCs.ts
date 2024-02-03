@@ -177,7 +177,7 @@ const Av1Pt3: NPC[] = [
         ],
       },
       {
-        nome: "Seta Infalível",
+        nome: "Seta Infalível de Talude",
         circulo: 1,
         classificacao: "Arcana",
         escola: "Evocação",
@@ -510,7 +510,7 @@ const Av1Pt3: NPC[] = [
         alcance: "Curto",
         duracao: "Sustentada",
         alvo_area: "Todas as criaturas (veja texto)",
-        desc: "Você e os seus aliados no alcance recebem +2 em testes de perícia e rolagens de dano, e todos os seus inimigos no alcance sofrem –2 em testes de perícia e rolagens de dano. Esse efeito é cumulativo com outras magias.",
+        desc: "Você e os seus aliados no alcance recebem +2 em testes de perícia e rolagens de dano, e todos os seus inimigos no alcance sofrem –2 em testes de perícia e rolagens de dano. Esse efeito é cumulativo com outras magias. Componente material: T$ 20 por PM gasto em incensos ou outras oferendas.",
         aprimoramentos: [
           {
             desc: "Aumenta os bônus em +1 (bônus máximo limitado pelo círculo máximo de magia que você pode lançar).",
