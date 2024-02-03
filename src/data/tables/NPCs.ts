@@ -1,5 +1,218 @@
 import { NPC } from "../constructors/NPC";
 
+const Av1Pt2: NPC[] = [
+  {
+    nome: "Estátua Animada",
+    categoria: "Construto",
+    tamanho: "Médio",
+    pv: 70,
+    iniciativa: 2,
+    percepcao: 4,
+    defesa: 19,
+    fortitude: 13,
+    reflexos: 2,
+    vontade: 7,
+    resistencias: "Nenhuma",
+    deslocamento: 6,
+    ataques: [
+      {
+        nome: "Pancada",
+        acerto: 12,
+        dano: [
+          {
+            dados: 2,
+            lados: 6,
+            bonus: 11,
+          },
+        ],
+        crit: "20x2",
+      },
+    ],
+    nd: 2,
+    pericias: [],
+    tesouro: "Nenhum",
+    atributos: [
+      {
+        nome: "Força",
+        valor: 4,
+      },
+      {
+        nome: "Destreza",
+        valor: -1,
+      },
+      {
+        nome: "Constituição",
+        valor: 4,
+      },
+      {
+        nome: "Inteligência",
+        valor: -10,
+      },
+      {
+        nome: "Sabedoria",
+        valor: 0,
+      },
+      {
+        nome: "Carisma",
+        valor: -4,
+      },
+    ],
+    img: "https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/342/420/618/636272732186039215.png",
+    poderes: [
+      {
+        nome: "Golpe Atordoante",
+        desc: "Uma criatura que sofra dano da pancada da estátua animada fica atordoada (Fort CD 17 evita). Uma criatura só pode ser atordoada por essa habilidade uma vez por cena",
+        acao: "Livre",
+      },
+    ],
+  },
+  {
+    nome: "Stagh",
+    categoria: "Espírito",
+    tamanho: "Pequeno",
+    tipo: "elemental",
+    pv: 35,
+    iniciativa: 6,
+    percepcao: 4,
+    defesa: 22,
+    fortitude: 7,
+    reflexos: 12,
+    vontade: 4,
+    resistencias:
+      "Imunidade a acertos críticos e atordoamento, cansaço, frio, metabolismo e paralisia, vulnerabilidade a fogo",
+    deslocamento: 9,
+    ataques: [
+      {
+        nome: "Duas Garras",
+        acerto: 16,
+        dano: [
+          {
+            dados: 1,
+            lados: 6,
+            bonus: 4,
+          },
+          {
+            dados: 1,
+            lados: 6,
+            bonus: 0,
+            tipo: "Frio",
+          },
+        ],
+        crit: "20x2",
+      },
+    ],
+    nd: 3,
+    tesouro:
+      "Tesouro 1 dose de éter elemental (frio) (CD 19 para extrair; você pode gastar uma ação padrão para aplicar esse éter em uma arma ou munição, que causará +1d4 pontos de dano de frio até o fim da cena; preço T$ 60).",
+    atributos: [
+      {
+        nome: "Força",
+        valor: 2,
+      },
+      {
+        nome: "Destreza",
+        valor: 3,
+      },
+      {
+        nome: "Constituição",
+        valor: 3,
+      },
+      {
+        nome: "Inteligência",
+        valor: -4,
+      },
+      {
+        nome: "Sabedoria",
+        valor: 1,
+      },
+      {
+        nome: "Carisma",
+        valor: -1,
+      },
+    ],
+    img: "https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/342/420/618/636272732186039215.png",
+    pericias: [],
+    poderes: [
+      {
+        nome: "Aura de Frio",
+        desc: "No início de cada turno do stagh, todas as criaturas em alcance curto sofrem 1d6+3 pontos de dano de frio (Fort CD 18 reduz à metade).",
+        acao: "Livre",
+      },
+    ],
+  },
+  {
+    nome: "Turba Zumbi",
+    categoria: "Morto-Vivo",
+    tamanho: "Grande",
+    tipo: "bando",
+    pv: 100,
+    iniciativa: 1,
+    percepcao: 1,
+    defesa: 11,
+    fortitude: 5,
+    reflexos: 1,
+    vontade: 1,
+    resistencias: "Nenhuma",
+    deslocamento: 6,
+    ataques: [
+      {
+        nome: "Mordida",
+        acerto: 17,
+        dano: [
+          {
+            dados: 2,
+            lados: 6,
+            bonus: 12,
+          },
+        ],
+        crit: "20x2",
+      },
+    ],
+    nd: 2,
+    tesouro: "Nenhum",
+    atributos: [
+      {
+        nome: "Força",
+        valor: 3,
+      },
+      {
+        nome: "Destreza",
+        valor: -1,
+      },
+      {
+        nome: "Constituição",
+        valor: 3,
+      },
+      {
+        nome: "Inteligência",
+        valor: -10,
+      },
+      {
+        nome: "Sabedoria",
+        valor: -1,
+      },
+      {
+        nome: "Carisma",
+        valor: 0,
+      },
+    ],
+    img: "https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/342/420/618/636272732186039215.png",
+    pericias: [],
+    poderes: [
+     {
+      nome: "Bando",
+      desc: "A turba é formada por um grupo de zumbis. Se um ataque da turba exceder a Defesa do inimigo por 10 ou mais, ele causa o dobro do dano. Se um ataque da turba errar, ele ainda assim causa metade do dano. A turba é imune a manobras de combate e efeitos que afetam apenas uma criatura e não causam dano, mas sofre 50% a mais de dano de efeitos de área, como Bola de Fogo. Um personagem com o poder Trespassar que acerte a turba pode usá-lo para fazer um ataque adicional contra ela (mas apenas uma vez por turno).",
+      acao: "Livre",
+     },
+      {
+        nome: "Fraqueza Zumbi",
+        desc: "A turba zumbi sofre o dobro de dano de acertos críticos ou de ataques feitos contra seus cérebros (Defesa 21).",
+        acao: "Livre",
+      },
+    ],
+  },
+]
+
 const Av1Pt3: NPC[] = [
   {
     nome: "Zelin Alexavich",
@@ -565,145 +778,7 @@ const Av1Pt3: NPC[] = [
 ];
 
 const Av1: NPC[] = [
-  {
-    nome: "Estátua Animada",
-    categoria: "Construto",
-    tamanho: "Médio",
-    pv: 70,
-    iniciativa: 2,
-    percepcao: 4,
-    defesa: 19,
-    fortitude: 13,
-    reflexos: 2,
-    vontade: 7,
-    resistencias: "Nenhuma",
-    deslocamento: 6,
-    ataques: [
-      {
-        nome: "Pancada",
-        acerto: 12,
-        dano: [
-          {
-            dados: 2,
-            lados: 6,
-            bonus: 11,
-          },
-        ],
-        crit: "20x2",
-      },
-    ],
-    nd: 2,
-    pericias: [],
-    tesouro: "Nenhum",
-    atributos: [
-      {
-        nome: "Força",
-        valor: 4,
-      },
-      {
-        nome: "Destreza",
-        valor: -1,
-      },
-      {
-        nome: "Constituição",
-        valor: 4,
-      },
-      {
-        nome: "Inteligência",
-        valor: -10,
-      },
-      {
-        nome: "Sabedoria",
-        valor: 0,
-      },
-      {
-        nome: "Carisma",
-        valor: -4,
-      },
-    ],
-    img: "https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/342/420/618/636272732186039215.png",
-    poderes: [
-      {
-        nome: "Golpe Atordoante",
-        desc: "Uma criatura que sofra dano da pancada da estátua animada fica atordoada (Fort CD 17 evita). Uma criatura só pode ser atordoada por essa habilidade uma vez por cena",
-        acao: "Livre",
-      },
-    ],
-  },
-  {
-    nome: "Stagh",
-    categoria: "Espírito",
-    tamanho: "Pequeno",
-    tipo: "elemental",
-    pv: 35,
-    iniciativa: 6,
-    percepcao: 4,
-    defesa: 22,
-    fortitude: 7,
-    reflexos: 12,
-    vontade: 4,
-    resistencias:
-      "Imunidade a acertos críticos e atordoamento, cansaço, frio, metabolismo e paralisia, vulnerabilidade a fogo",
-    deslocamento: 9,
-    ataques: [
-      {
-        nome: "Duas Garras",
-        acerto: 16,
-        dano: [
-          {
-            dados: 1,
-            lados: 6,
-            bonus: 4,
-          },
-          {
-            dados: 1,
-            lados: 6,
-            bonus: 0,
-            tipo: "Frio",
-          },
-        ],
-        crit: "20x2",
-      },
-    ],
-    nd: 3,
-    tesouro:
-      "Tesouro 1 dose de éter elemental (frio) (CD 19 para extrair; você pode gastar uma ação padrão para aplicar esse éter em uma arma ou munição, que causará +1d4 pontos de dano de frio até o fim da cena; preço T$ 60).",
-    atributos: [
-      {
-        nome: "Força",
-        valor: 2,
-      },
-      {
-        nome: "Destreza",
-        valor: 3,
-      },
-      {
-        nome: "Constituição",
-        valor: 3,
-      },
-      {
-        nome: "Inteligência",
-        valor: -4,
-      },
-      {
-        nome: "Sabedoria",
-        valor: 1,
-      },
-      {
-        nome: "Carisma",
-        valor: -1,
-      },
-    ],
-    img: "https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/342/420/618/636272732186039215.png",
-    pericias: [],
-    poderes: [
-      {
-        nome: "Aura de Frio",
-        desc: "No início de cada turno do stagh, todas as criaturas em alcance curto sofrem 1d6+3 pontos de dano de frio (Fort CD 18 reduz à metade).",
-        acao: "Livre",
-      },
-    ],
-  },
+  ...Av1Pt2,
   ...Av1Pt3,
 ];
 
