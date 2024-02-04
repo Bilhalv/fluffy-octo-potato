@@ -17,6 +17,20 @@ module.exports = {
       fontFamily: {
         tormenta: ["tormenta", "sans-serif"],
       },
+      keyframes: {
+        "fade-in-left": {
+          "0%": { opacity: "0", transform: "translateX(-100%)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "fade-out-left": {
+          "0%": { opacity: "1", transform: "translateX(0)" },
+          "100%": { opacity: "0", transform: "translateX(-100%)" },
+        },
+      },
+      animation: {
+        "fade-in-left": "fade-in-left 0.2s ease-in",
+        "fade-out-left": "fade-out-left 0.2s ease-out",
+      },
     },
   },
   plugins: [],

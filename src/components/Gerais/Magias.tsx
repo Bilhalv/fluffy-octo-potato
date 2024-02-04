@@ -1,8 +1,8 @@
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
-import { magia } from "../../data/constructors/Personagem";
 import React from "react";
 import { ArrowDropUp } from "@mui/icons-material";
 import { PopoverComponent } from "./Popovers";
+import { magia } from "../../data/functions/findMagia";
 
 interface Props {
   magia: magia[];
