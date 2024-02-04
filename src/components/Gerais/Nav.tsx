@@ -1,5 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React from "react";
+import { AddNpc } from "../Nav/AddNPC";
 
 export default function Nav() {
   const [tempAside, setTempAside] = React.useState<boolean>(true);
@@ -22,6 +23,7 @@ export default function Nav() {
           >
             <VisibilityOff />
           </button>
+          <AddNpc />
         </aside>
       ) : (
         <button
