@@ -1,10 +1,11 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React from "react";
-import { AddNpc } from "../Nav/AddNPC";
+import { AddNpc } from "./AddNPC";
+import { TurnOrder } from "./TurnOrder";
 
 export default function Nav() {
-  const [tempAside, setTempAside] = React.useState<boolean>(true);
-  const [aside, setAside] = React.useState<boolean>(true);
+  const [tempAside, setTempAside] = React.useState<boolean>(false);
+  const [aside, setAside] = React.useState<boolean>(false);
   function toggleAside() {
     setTempAside(!tempAside);
     setAside(!aside);
@@ -24,6 +25,7 @@ export default function Nav() {
             <VisibilityOff />
           </button>
           <AddNpc />
+          <TurnOrder />
         </aside>
       ) : (
         <button

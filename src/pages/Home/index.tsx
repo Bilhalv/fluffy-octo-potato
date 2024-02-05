@@ -4,7 +4,7 @@ import { Personagens } from "../../data/tables/Personagens";
 import { NPCs } from "../../data/tables/NPCs";
 import NPCBlock from "../../components/Fichas/NPC";
 import { NPC } from "../../data/constructors/NPC";
-import Nav from "../../components/Gerais/Nav";
+import Nav from "../../components/Nav/Nav";
 
 const Home = () => {
   const [npcsShown, setNpcsShown] = useState<NPC[]>([]);
