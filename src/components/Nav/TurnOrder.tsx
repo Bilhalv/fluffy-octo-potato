@@ -35,7 +35,7 @@ function TurnsBlock({ turnOrder, changeTurnOrder, active }: BlockProps) {
               (active === turn.nome ? "text-red-600 font-bold" : "")
             }
           >
-            <span>{turn.nome}</span>
+            <span>({turn.desempate}) {turn.nome}</span>
             <input
               type="number"
               value={turn.iniciativa}
