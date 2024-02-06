@@ -35,7 +35,9 @@ function TurnsBlock({ turnOrder, changeTurnOrder, active }: BlockProps) {
               (active === turn.nome ? "text-red-600 font-bold" : "")
             }
           >
-            <span>({turn.desempate}) {turn.nome}</span>
+            <span>
+              ({turn.desempate}) {turn.nome}
+            </span>
             <input
               type="number"
               value={turn.iniciativa}
@@ -104,101 +106,99 @@ export function TurnOrder() {
   }
   return (
     <>
-      <NavModal icon={<AccessTime />}>
-        <div className="bg-white w-1/2 p-4 mx-auto rounded-xl my-auto font-tormenta">
-          <div className="flex justify-between">
-            <IconButton
-              sx={{
-                backgroundColor: "red",
-                color: "white",
-                padding: "2px",
-                border: "2px solid red",
-                zIndex: 10,
-                "&:hover": {
-                  backgroundColor: "transparent",
-                  color: "red",
-                  transform: "scale(1.1)",
-                },
-              }}
-              onClick={() => {
-                sortTurnOrder();
-              }}
-            >
-              <SwapVert />
-            </IconButton>
-            <h1 className="text-2xl font-bold text-center">Turnos</h1>
-            <IconButton
-              sx={{
-                backgroundColor: "red",
-                color: "white",
-                padding: "2px",
-                border: "2px solid red",
-                zIndex: 10,
-                "&:hover": {
-                  backgroundColor: "transparent",
-                  color: "red",
-                  transform: "scale(1.1)",
-                },
-              }}
-              onClick={() => {
-                resetTurnOrder();
-                setTurnOrder(
-                  JSON.parse(localStorage.getItem("turnOrder") || "[]")
-                );
-              }}
-            >
-              <NotInterested />
-            </IconButton>
-          </div>
-          {turnOrder.length > 0 ? (
-            <TurnsBlock
-              turnOrder={turnOrder}
-              changeTurnOrder={changeTurnOrder}
-              active={active}
-            />
-          ) : (
-            <p className="text-center">Nenhum jogador na ordem de turno</p>
-          )}
-          <div className="flex justify-evenly">
-            <IconButton
-              onClick={() => {
-                let newTurnOrder = [...turnOrder];
-                let index = newTurnOrder.findIndex(
-                  (turn) => turn.nome === active
-                );
-                if (index === -1) {
+      <NavModal icon={<AccessTime />} tooltip="Turnos">
+        <div className="flex justify-between">
+          <IconButton
+            sx={{
+              backgroundColor: "red",
+              color: "white",
+              padding: "2px",
+              border: "2px solid red",
+              zIndex: 10,
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: "red",
+                transform: "scale(1.1)",
+              },
+            }}
+            onClick={() => {
+              sortTurnOrder();
+            }}
+          >
+            <SwapVert />
+          </IconButton>
+          <h1 className="text-2xl font-bold text-center">Turnos</h1>
+          <IconButton
+            sx={{
+              backgroundColor: "red",
+              color: "white",
+              padding: "2px",
+              border: "2px solid red",
+              zIndex: 10,
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: "red",
+                transform: "scale(1.1)",
+              },
+            }}
+            onClick={() => {
+              resetTurnOrder();
+              setTurnOrder(
+                JSON.parse(localStorage.getItem("turnOrder") || "[]")
+              );
+            }}
+          >
+            <NotInterested />
+          </IconButton>
+        </div>
+        {turnOrder.length > 0 ? (
+          <TurnsBlock
+            turnOrder={turnOrder}
+            changeTurnOrder={changeTurnOrder}
+            active={active}
+          />
+        ) : (
+          <p className="text-center">Nenhum jogador na ordem de turno</p>
+        )}
+        <div className="flex justify-evenly">
+          <IconButton
+            onClick={() => {
+              let newTurnOrder = [...turnOrder];
+              let index = newTurnOrder.findIndex(
+                (turn) => turn.nome === active
+              );
+              if (index === -1) {
+                setActive(newTurnOrder[0].nome);
+              } else {
+                if (index === 0) {
+                  setActive(newTurnOrder[newTurnOrder.length - 1].nome);
+                } else {
+                  setActive(newTurnOrder[index - 1].nome);
+                }
+              }
+            }}
+          >
+            <ArrowBackIos />
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              let newTurnOrder = [...turnOrder];
+              let index = newTurnOrder.findIndex(
+                (turn) => turn.nome === active
+              );
+              if (index === -1) {
+                setActive(newTurnOrder[0].nome);
+              } else {
+                if (index === newTurnOrder.length - 1) {
                   setActive(newTurnOrder[0].nome);
                 } else {
-                  if (index === 0) {
-                    setActive(newTurnOrder[newTurnOrder.length - 1].nome);
-                  } else {
-                    setActive(newTurnOrder[index - 1].nome);
-                  }
+                  setActive(newTurnOrder[index + 1].nome);
                 }
-              }}
-            >
-              <ArrowBackIos />
-            </IconButton>
-            <IconButton
-              onClick={() => {
-                let newTurnOrder = [...turnOrder];
-                let index = newTurnOrder.findIndex(
-                  (turn) => turn.nome === active
-                );
-                if (index === -1) {
-                  setActive(newTurnOrder[0].nome);
-                } else {
-                  if (index === newTurnOrder.length - 1) {
-                    setActive(newTurnOrder[0].nome);
-                  } else {
-                    setActive(newTurnOrder[index + 1].nome);
-                  }
-                }
-              }}
-            >
-              <ArrowForwardIos />
-            </IconButton>
-          </div>
+              }
+            }}
+          >
+            <ArrowForwardIos />
+          </IconButton>
         </div>
       </NavModal>
     </>

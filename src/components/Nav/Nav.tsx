@@ -2,6 +2,9 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React from "react";
 import { AddNpc } from "./AddNPC";
 import { TurnOrder } from "./TurnOrder";
+import { Acoes } from "./Acoes";
+import { Condicoes } from "./Condicoes";
+import { Manobras } from "./Manobras";
 
 export default function Nav() {
   const [tempAside, setTempAside] = React.useState<boolean>(false);
@@ -26,6 +29,9 @@ export default function Nav() {
           </button>
           <AddNpc />
           <TurnOrder />
+          <Acoes />
+          <Condicoes />
+          <Manobras />
         </aside>
       ) : (
         <button
