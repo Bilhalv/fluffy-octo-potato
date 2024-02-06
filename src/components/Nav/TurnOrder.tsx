@@ -14,6 +14,7 @@ import { IconButton } from "@mui/material";
 type turn = {
   nome: string;
   iniciativa: number;
+  desempate: number;
 };
 
 interface BlockProps {
@@ -47,35 +48,57 @@ function TurnsBlock({ turnOrder, changeTurnOrder, active }: BlockProps) {
     </div>
   );
 }
-
+function resetTurnOrder() {
+  let playersAll: turn[] = [];
+  Personagens.forEach((personagem) => {
+    playersAll.push({
+      nome: personagem.persona,
+      iniciativa: 0,
+      desempate: personagem.atributos[1].valor,
+    });
+  });
+  let npcsAll: turn[] = [];
+  JSON.parse(localStorage.getItem("npcs") || "[]").forEach((npc) => {
+    npcsAll.push({
+      nome: npc.nome,
+      iniciativa: 0,
+      desempate: npc.iniciativa,
+    });
+  });
+  localStorage.setItem("turnOrder", JSON.stringify(playersAll.concat(npcsAll)));
+}
 export function TurnOrder() {
   if (localStorage.getItem("turnOrder") === null) {
-    let playersAll: turn[] = [];
-    Personagens.forEach((personagem) => {
-      playersAll.push({
-        nome: personagem.persona,
-        iniciativa: 0,
-      });
-    });
-    let npcsAll: turn[] = [];
-    JSON.parse(localStorage.getItem("npcs") || "[]").forEach((npc) => {
-      npcsAll.push({
-        nome: npc.nome,
-        iniciativa: 0,
-      });
-    });
-    localStorage.setItem(
-      "turnOrder",
-      JSON.stringify(playersAll.concat(npcsAll))
-    );
+    resetTurnOrder();
   }
   const [turnOrder, setTurnOrder] = React.useState<turn[]>(
     JSON.parse(localStorage.getItem("turnOrder") || "[]")
   );
   const [active, setActive] = React.useState<string>();
+
   function changeTurnOrder(index: number, value: number) {
     let newTurnOrder = [...turnOrder];
     newTurnOrder[index].iniciativa = value;
+    setTurnOrder(newTurnOrder);
+    localStorage.setItem("turnOrder", JSON.stringify(newTurnOrder));
+  }
+
+  function sortTurnOrder() {
+    let newTurnOrder = [...turnOrder];
+    let sortedTurnOrder = [...newTurnOrder].sort(
+      (a, b) => b.iniciativa - a.iniciativa || b.desempate - a.desempate
+    );
+
+    if (JSON.stringify(sortedTurnOrder) === JSON.stringify(newTurnOrder)) {
+      newTurnOrder.sort(
+        (a, b) => a.iniciativa - b.iniciativa || a.desempate - b.desempate
+      );
+    } else {
+      newTurnOrder.sort(
+        (a, b) => b.iniciativa - a.iniciativa || b.desempate - a.desempate
+      );
+    }
+    setActive(newTurnOrder[0].nome);
     setTurnOrder(newTurnOrder);
     localStorage.setItem("turnOrder", JSON.stringify(newTurnOrder));
   }
@@ -98,22 +121,7 @@ export function TurnOrder() {
                 },
               }}
               onClick={() => {
-                let newTurnOrder = [...turnOrder];
-                let sortedTurnOrder = [...newTurnOrder].sort(
-                  (a, b) => b.iniciativa - a.iniciativa
-                );
-
-                if (
-                  JSON.stringify(sortedTurnOrder) ===
-                  JSON.stringify(newTurnOrder)
-                ) {
-                  newTurnOrder.sort((a, b) => a.iniciativa - b.iniciativa);
-                } else {
-                  newTurnOrder.sort((a, b) => b.iniciativa - a.iniciativa);
-                }
-                setActive(newTurnOrder[0].nome);
-                setTurnOrder(newTurnOrder);
-                localStorage.setItem("turnOrder", JSON.stringify(newTurnOrder));
+                sortTurnOrder();
               }}
             >
               <SwapVert />
@@ -133,13 +141,10 @@ export function TurnOrder() {
                 },
               }}
               onClick={() => {
-                let newTurnOrder = [...turnOrder];
-                newTurnOrder.forEach((turn) => {
-                  turn.iniciativa = 0;
-                });
-                setTurnOrder(newTurnOrder);
-                setActive(undefined);
-                localStorage.setItem("turnOrder", JSON.stringify(newTurnOrder));
+                resetTurnOrder();
+                setTurnOrder(
+                  JSON.parse(localStorage.getItem("turnOrder") || "[]")
+                );
               }}
             >
               <NotInterested />
