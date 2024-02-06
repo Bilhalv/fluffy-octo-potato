@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PersonagemBlock from "../../components/Fichas/Personagem";
 import { Personagens } from "../../data/tables/Personagens";
 import { NPCs } from "../../data/tables/NPCs";
@@ -7,10 +7,15 @@ import { NPC } from "../../data/constructors/NPC";
 import Nav from "../../components/Nav/Nav";
 
 const Home = () => {
-  const [npcsShown, setNpcsShown] = useState<NPC[]>([]);
+  const [npcsShown, setNpcsShown] = useState<NPC[]>(
+    JSON.parse(localStorage.getItem("npcs") || "[]") as NPC[]
+  );
+  useEffect(() => {
+    setNpcsShown(JSON.parse(localStorage.getItem("npcs") || "[]") as NPC[]);
+  }, [npcsShown]);
   return (
     <>
-        <Nav />
+      <Nav />
       <body className="bg-bg-t20 bg-fixed bg-center p-8 font-tormenta flex flex-col gap-10">
         <div className="bg-white p-4 bg-opacity-25 rounded-xl flex justify-center flex-wrap gap-4">
           {Personagens.map((personagem) => (
@@ -18,7 +23,7 @@ const Home = () => {
           ))}
         </div>
         <div className="bg-white p-4 bg-opacity-25 rounded-xl flex justify-center flex-wrap gap-4">
-          {npcsShown.map((npc:NPC) => (
+          {npcsShown.map((npc: NPC) => (
             <NPCBlock NPC={npc} />
           ))}
         </div>
