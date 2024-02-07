@@ -172,8 +172,6 @@ export default function NPCBlock(props: Props) {
                 {props.NPC.deslocamento}m ({props.NPC.deslocamento / 1.5}□)
               </p>
             </div>
-            {props.NPC.poderes && <Poderes poder={[...props.NPC.poderes]} />}
-            {props.NPC.magias && <Magias magia={[...props.NPC.magias]} />}
             <div className="flex flex-col gap-2">
               <p>
                 <b className="text-red-600">Perícias</b>
@@ -191,6 +189,8 @@ export default function NPCBlock(props: Props) {
                 {props.NPC.tesouro}
               </p>
             </div>
+            {props.NPC.poderes && <Poderes poder={[...props.NPC.poderes]} />}
+            {props.NPC.magias && <Magias magia={[...props.NPC.magias]} />}
           </AccordionDetails>
         </Accordion>
       </div>
