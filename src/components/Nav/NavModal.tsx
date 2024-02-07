@@ -38,7 +38,7 @@ export function NavModal({ icon, children, tooltip }: Props) {
           justifyContent: "center",
         }}
       >
-        <div className="bg-white w-1/2 p-4 mx-auto rounded-xl my-auto font-tormenta">
+        <div className="bg-white bg-opacity-75 w-1/2 p-4 mx-auto rounded-xl my-auto font-tormenta">
           {children as React.ReactElement}
         </div>
       </Modal>

@@ -9,7 +9,7 @@ import NPCBlock from "../Fichas/NPC";
 export function AddNpc() {
   const { npcsShown, setNpcsShown } = useContext(NPCsContext);
 
-  const [selectedNpc, setSelectedNpc] = React.useState<string>("");
+  const [selectedNpc, setSelectedNpc] = React.useState<string>(NPCs[0].nome);
   const addNpc = () => {
     const npc = NPCs.find((item) => item.nome === selectedNpc);
     if (npc) {
