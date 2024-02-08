@@ -5,16 +5,19 @@ import { NPCs } from "../../data/tables/NPCs";
 import { NavModal } from "./NavModal";
 import { NPCsContext } from "../../pages/Home";
 import NPCBlock from "../Fichas/NPC";
+import { NPCShown } from "../../data/constructors/NPC";
 
 export function AddNpc() {
-  const { npcsShown, setNpcsShown } = useContext(NPCsContext);
+  const { npcsShown, addNPC } = useContext(NPCsContext);
 
   const [selectedNpc, setSelectedNpc] = React.useState<string>(NPCs[0].nome);
   const addNpc = () => {
-    const npc = NPCs.find((item) => item.nome === selectedNpc);
+    const npc: NPCShown = {
+      ...(NPCs.find((item) => item.nome === selectedNpc) || NPCs[0]),
+      id: npcsShown.length + 1,
+    };
     if (npc) {
-      setNpcsShown([...npcsShown, npc]);
-      localStorage.setItem("npcs", JSON.stringify([...npcsShown, npc]));
+      addNPC(npc);
     }
   };
   return (
@@ -37,9 +40,12 @@ export function AddNpc() {
           </Select>
 
           <NPCBlock
-            NPC={NPCs.find((item) => item.nome === selectedNpc) || NPCs[0]}
+            NPC={{
+              ...(NPCs.find((item) => item.nome === selectedNpc) || NPCs[0]),
+              id: npcsShown.length + 1,
+            }}
             isModal
-            />
+          />
           <button
             onClick={addNpc}
             className="bg-green-600 p-2 rounded-full hover:scale-110 hover:bg-green-400 transition-all"

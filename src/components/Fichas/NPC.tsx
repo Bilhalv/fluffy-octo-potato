@@ -9,40 +9,21 @@ import {
 import Bar from "../Gerais/Bar";
 import Poderes from "../Gerais/Poderes";
 import Magias from "../Gerais/Magias";
-import { NPC } from "../../data/constructors/NPC";
+import { NPCShown } from "../../data/constructors/NPC";
 import { ArrowLeft, ArrowRight, Delete } from "@mui/icons-material";
 import { NPCsContext } from "../../pages/Home";
 
 interface Props {
-  NPC: NPC;
+  NPC: NPCShown;
   isModal?: boolean;
 }
 
 export default function NPCBlock(props: Props) {
   const [pvAtual, setPvAtual] = useState<number>(props.NPC.pv);
   const [pmAtual, setPmAtual] = useState<number>(props.NPC.pm || 0);
-  const { npcsShown, setNpcsShown } = useContext(NPCsContext);
-  function deleteNPC() {
-    const newNpcs = npcsShown.filter((npc) => npc !== props.NPC);
-    setNpcsShown(newNpcs);
-    localStorage.setItem("npcs", JSON.stringify(newNpcs));
-  }
-  function moveNPC(pos: string) {
-    const index = npcsShown.indexOf(props.NPC);
-    if (
-      (pos === "left" && index > 0) ||
-      (pos === "right" && index < npcsShown.length - 1)
-    ) {
-      const newNpcs = [...npcsShown];
-      const swapIndex = pos === "left" ? index - 1 : index + 1;
-      [newNpcs[index], newNpcs[swapIndex]] = [
-        newNpcs[swapIndex],
-        newNpcs[index],
-      ];
-      setNpcsShown(newNpcs);
-      localStorage.setItem("npcs", JSON.stringify(newNpcs));
-    }
-  }
+  const { npcsShown, deleteNPC, moveNPC } =
+    useContext(NPCsContext);
+
   return (
     <>
       <div className="p-7 rounded-2xl gap-3 desktop:w-2/5 w-full">
@@ -59,7 +40,7 @@ export default function NPCBlock(props: Props) {
                 {!props.isModal && (
                   <IconButton
                     onClick={() => {
-                      deleteNPC();
+                      deleteNPC(props.NPC.id);
                     }}
                     className="w-fit"
                   >
@@ -71,7 +52,12 @@ export default function NPCBlock(props: Props) {
                     <div className="h-fit my-auto">
                       <IconButton
                         onClick={() => {
-                          moveNPC("left");
+                          moveNPC(
+                            "left",
+                            npcsShown.findIndex(
+                              (npc) => npc.id === props.NPC.id
+                            )
+                          );
                         }}
                       >
                         <ArrowLeft />
@@ -86,7 +72,12 @@ export default function NPCBlock(props: Props) {
                     <div className="h-fit my-auto">
                       <IconButton
                         onClick={() => {
-                          moveNPC("right");
+                          moveNPC(
+                            "right",
+                            npcsShown.findIndex(
+                              (npc) => npc.id === props.NPC.id
+                            )
+                          );
                         }}
                       >
                         <ArrowRight />

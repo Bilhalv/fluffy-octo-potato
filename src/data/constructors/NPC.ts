@@ -60,3 +60,5 @@ export type NPC = {
   pericias: pericia[];
   tesouro: string;
 };
+
+export type NPCShown = NPC & { id: number };
