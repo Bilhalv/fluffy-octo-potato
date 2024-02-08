@@ -67,7 +67,7 @@ const Home = () => {
               <PersonagemBlock Personagem={personagem} />
             ))}
           </div>
-          <div className="bg-white p-4 bg-opacity-25 rounded-xl flex justify-center flex-wrap gap-4 relative">
+          <div className="bg-white p-4 bg-opacity-25 rounded-xl flex flex-col gap-4 relative">
             <FlipMove typeName={null}>
               <div className="flex justify-evenly">
                 {npcsShown.map((npc: NPCShown) => (
@@ -76,9 +76,12 @@ const Home = () => {
                   </p>
                 ))}
               </div>
+              <div className="flex  justify-center flex-wrap gap-4 relative">
+
               {npcsShown.map((npc: NPCShown) => (
                 <NPCBlock NPC={npc} key={npc.id} />
               ))}
+              </div>
             </FlipMove>
           </div>
         </body>

@@ -21,12 +21,15 @@ interface Props {
 export default function NPCBlock(props: Props) {
   const [pvAtual, setPvAtual] = useState<number>(props.NPC.pv);
   const [pmAtual, setPmAtual] = useState<number>(props.NPC.pm || 0);
-  const { npcsShown, deleteNPC, moveNPC } =
-    useContext(NPCsContext);
+  const { npcsShown, deleteNPC, moveNPC } = useContext(NPCsContext);
 
   return (
     <>
-      <div className="p-7 rounded-2xl gap-3 desktop:w-2/5 w-full">
+      <div
+        className={
+          "p-7 rounded-2xl gap-3 w-full " + props.isModal ? "" : "desktop:w-2/5"
+        }
+      >
         <Accordion
           sx={{
             bgcolor: "rgba(255, 255, 255, 0.6)",

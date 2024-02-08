@@ -10,7 +10,7 @@ import { NPCShown } from "../../data/constructors/NPC";
 export function AddNpc() {
   const { npcsShown, addNPC } = useContext(NPCsContext);
 
-  const [selectedNpc, setSelectedNpc] = React.useState<string>(NPCs[0].nome);
+  const [selectedNpc, setSelectedNpc] = React.useState<string>();
   const addNpc = () => {
     const npc: NPCShown = {
       ...(NPCs.find((item) => item.nome === selectedNpc) || NPCs[0]),
@@ -38,14 +38,15 @@ export function AddNpc() {
               </MenuItem>
             ))}
           </Select>
-
-          <NPCBlock
-            NPC={{
-              ...(NPCs.find((item) => item.nome === selectedNpc) || NPCs[0]),
-              id: npcsShown.length + 1,
-            }}
-            isModal
-          />
+          {selectedNpc && (
+            <NPCBlock
+              NPC={{
+                ...(NPCs.find((item) => item.nome === selectedNpc) || NPCs[0]),
+                id: npcsShown.length + 1,
+              }}
+              isModal
+            />
+          )}
           <button
             onClick={addNpc}
             className="bg-green-600 p-2 rounded-full hover:scale-110 hover:bg-green-400 transition-all"
