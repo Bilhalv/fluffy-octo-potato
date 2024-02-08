@@ -12,6 +12,6 @@ export type AçaoRegra = Regra & {
 export type ManobraRegra = Regra
 
 export type CondicaoRegra = Regra & {
-    tipo: string;
-    //adicionar opções de tipos de condições
+    tipo?: 
+    "Arcano" | "Atordoamento" | "Cansaço" | "Climático" | "Cura" | "Dano" | "Divino" | "Luz" | "Mágico" | "Medo" | "Mental" | "Metabolismo" | "Metamorfose" | "Movimento" | "Perda de Vida" | "Sentidos" | "Trevas" | "Veneno";
 }

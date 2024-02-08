@@ -16,6 +16,7 @@ module.exports = {
       },
       fontFamily: {
         tormenta: ["tormenta", "sans-serif"],
+        'poppins': ['Poppins', 'sans-serif'],
       },
       keyframes: {
         "fade-in-left": {
