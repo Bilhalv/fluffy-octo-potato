@@ -8,13 +8,13 @@ export const CondicoesRegras: CondicaoRegra[] = [
   {
     titulo: "Abalado",
     descricao:
-      "O personagem sofre –2 em testes de perícia. Se ficar abalado novamente, em vez disso fica apavorado.",
+      "O personagem sofre -2 em testes de perícia. Se ficar abalado novamente, em vez disso fica apavorado.",
     tipo: "Mental",
   },
   {
     titulo: "Agarrado",
     descricao:
-      "O personagem fica desprevenido e imóvel, sofre –2 em testes de ataque e só pode atacar com armas leves. Ataques à distância contra um alvo envolvido em uma manobra agarrar têm 50% de chance de acertar o alvo errado.",
+      "O personagem fica desprevenido e imóvel, sofre -2 em testes de ataque e só pode atacar com armas leves. Ataques à distância contra um alvo envolvido em uma manobra agarrar têm 50% de chance de acertar o alvo errado.",
     tipo: "Movimento",
   },
   {
@@ -26,7 +26,7 @@ export const CondicoesRegras: CondicaoRegra[] = [
   {
     titulo: "Apavorado",
     descricao:
-      "O personagem sofre –5 em testes de perícia e não pode se aproximar voluntariamente da fonte do medo.",
+      "O personagem sofre -5 em testes de perícia e não pode se aproximar voluntariamente da fonte do medo.",
     tipo: "Medo",
   },
   {
@@ -37,12 +37,12 @@ export const CondicoesRegras: CondicaoRegra[] = [
   {
     titulo: "Caído",
     descricao:
-      "O personagem sofre –5 na Defesa contra ataques corpo a corpo e recebe +5 na Defesa contra ataques à distância (cumulativos com outras condições). Além disso, sofre –5 em ataques corpo a corpo e seu deslocamento é reduzido a 1,5m.",
+      "O personagem sofre -5 na Defesa contra ataques corpo a corpo e recebe +5 na Defesa contra ataques à distância (cumulativos com outras condições). Além disso, sofre -5 em ataques corpo a corpo e seu deslocamento é reduzido a 1,5m.",
   },
   {
     titulo: "Cego",
     descricao:
-      "O personagem fica desprevenido e lento, não pode fazer testes de Percepção para observar e sofre –5 em testes de perícias baseadas em Força ou Destreza. Todos os alvos de seus ataques recebem camuflagem total. Você é considerado cego enquanto estiver em uma área de escuridão total, a menos que algo lhe permita perceber no escuro.",
+      "O personagem fica desprevenido e lento, não pode fazer testes de Percepção para observar e sofre -5 em testes de perícias baseadas em Força ou Destreza. Todos os alvos de seus ataques recebem camuflagem total. Você é considerado cego enquanto estiver em uma área de escuridão total, a menos que algo lhe permita perceber no escuro.",
     tipo: "Sentidos",
   },
   {
@@ -54,12 +54,12 @@ export const CondicoesRegras: CondicaoRegra[] = [
   {
     titulo: "Debilitado",
     descricao:
-      "O personagem sofre –5 em testes de Força, Destreza e Constituição e de perícias baseadas nesses atributos. Se o personagem ficar debilitado novamente, em vez disso fica inconsciente.",
+      "O personagem sofre -5 em testes de Força, Destreza e Constituição e de perícias baseadas nesses atributos. Se o personagem ficar debilitado novamente, em vez disso fica inconsciente.",
   },
     {
         titulo: "Desprevenido",
         descricao:
-        "O personagem sofre –5 na Defesa e em Reflexos. Você fica desprevenido contra inimigos que não possa perceber.",
+        "O personagem sofre -5 na Defesa e em Reflexos. Você fica desprevenido contra inimigos que não possa perceber.",
     },
     {
         titulo: "Doente",
@@ -86,7 +86,7 @@ export const CondicoesRegras: CondicaoRegra[] = [
     {
         titulo: "Enredado",
         descricao:
-        "O personagem fica lento, vulnerável e sofre –2 em testes de ataque.",
+        "O personagem fica lento, vulnerável e sofre -2 em testes de ataque.",
         tipo: "Movimento",
     },
     {
@@ -98,7 +98,7 @@ export const CondicoesRegras: CondicaoRegra[] = [
     {
         titulo: "Esmorecido",
         descricao:
-        "O personagem sofre –5 em testes de Inteligência, Sabedoria e Carisma e de perícias baseadas nesses atributos.",
+        "O personagem sofre -5 em testes de Inteligência, Sabedoria e Carisma e de perícias baseadas nesses atributos.",
         tipo: "Mental",
     },
     {
@@ -110,24 +110,24 @@ export const CondicoesRegras: CondicaoRegra[] = [
     {
         titulo: "Fascinado",
         descricao:
-        "Com a atenção presa em alguma coisa. O personagem sofre –5 em Percepção e não pode fazer ações, exceto observar aquilo que o fascinou. Esta condição é anulada por ações hostis contra o personagem ou se o que o fascinou não estiver mais visível. Balançar uma criatura fascinada para tirá-la desse estado gasta uma ação padrão.",
+        "Com a atenção presa em alguma coisa. O personagem sofre -5 em Percepção e não pode fazer ações, exceto observar aquilo que o fascinou. Esta condição é anulada por ações hostis contra o personagem ou se o que o fascinou não estiver mais visível. Balançar uma criatura fascinada para tirá-la desse estado gasta uma ação padrão.",
         tipo: "Mental",
     },
     {
         titulo: "Fatigado",
         descricao:
-        "O personagem sofre –2 em testes de Força, Destreza e Constituição e de perícias baseadas nesses atributos. Se ficar fatigado novamente, em vez disso fica exausto.",
+        "O personagem sofre -2 em testes de Força, Destreza e Constituição e de perícias baseadas nesses atributos. Se ficar fatigado novamente, em vez disso fica exausto.",
         tipo: "Cansaço",
     },
     {
         titulo: "Fraco",
         descricao:
-        "O personagem sofre –2 em testes de Força, Destreza e Constituição e de perícias baseadas nesses atributos. Se ficar fraco novamente, em vez disso fica debilitado.",
+        "O personagem sofre -2 em testes de Força, Destreza e Constituição e de perícias baseadas nesses atributos. Se ficar fraco novamente, em vez disso fica debilitado.",
     },
     {
         titulo: "Frustrado",
         descricao:
-        "O personagem sofre –2 em testes de Inteligência, Sabedoria e Carisma e de perícias baseadas nesses atributos. Se ficar frustrado novamente, em vez disso fica esmorecido.",
+        "O personagem sofre -2 em testes de Inteligência, Sabedoria e Carisma e de perícias baseadas nesses atributos. Se ficar frustrado novamente, em vez disso fica esmorecido.",
         tipo: "Mental",
     },
     {
@@ -144,7 +144,7 @@ export const CondicoesRegras: CondicaoRegra[] = [
     {
         titulo: "Indefeso",
         descricao:
-        "O personagem fica desprevenido, mas sofre –10 na Defesa, falha automaticamente em testes de Reflexos e pode sofrer golpes de misericórdia.",
+        "O personagem fica desprevenido, mas sofre -10 na Defesa, falha automaticamente em testes de Reflexos e pode sofrer golpes de misericórdia.",
     },
     {
         titulo: "Lento",
@@ -154,7 +154,7 @@ export const CondicoesRegras: CondicaoRegra[] = [
     },
     {
         titulo: "Ofuscado",
-        descricao: "O personagem sofre –2 em testes de ataque e de Percepção.",
+        descricao: "O personagem sofre -2 em testes de ataque e de Percepção.",
         tipo: "Sentidos",
     },
     {
@@ -183,13 +183,13 @@ export const CondicoesRegras: CondicaoRegra[] = [
     {
         titulo: "Sobrecarregado",
         descricao:
-        "O personagem sofre penalidade de armadura –5 e seu deslocamento é reduzido em –3m.",
+        "O personagem sofre penalidade de armadura -5 e seu deslocamento é reduzido em -3m.",
         tipo: "Movimento",
     },
     {
         titulo: "Surdo",
         descricao:
-        "O personagem não pode fazer testes de Percepção para ouvir e sofre –5 em testes de Iniciativa. Além disso, é considerado em condição ruim para lançar magias.",
+        "O personagem não pode fazer testes de Percepção para ouvir e sofre -5 em testes de Iniciativa. Além disso, é considerado em condição ruim para lançar magias.",
         tipo: "Sentidos",
     },
     {
@@ -199,7 +199,7 @@ export const CondicoesRegras: CondicaoRegra[] = [
     },
     {
         titulo: "Vulnerável",
-        descricao: "O personagem sofre –2 na Defesa.",
+        descricao: "O personagem sofre -2 na Defesa.",
     },
 ];
 
