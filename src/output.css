@@ -676,6 +676,10 @@ video {
   max-height: 15rem;
 }
 
+.max-h-96 {
+  max-height: 24rem;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -830,6 +834,14 @@ video {
   overflow: scroll;
 }
 
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
 .rounded-2xl {
   border-radius: 1rem;
 }
@@ -848,6 +860,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border {
@@ -922,6 +938,10 @@ video {
 
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
+}
+
+.bg-opacity-10 {
+  --tw-bg-opacity: 0.1;
 }
 
 .bg-bg-t20 {

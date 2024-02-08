@@ -3,7 +3,13 @@ import { NavModal } from "./NavModal";
 import { Sick } from "@mui/icons-material";
 import { CondicaoRegra } from "../../data/constructors/Regra";
 import { CondicoesRegras, CondicoesTipos } from "../../data/tables/Regras";
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Input,
+  TextField,
+} from "@mui/material";
 import FlipMove from "react-flip-move";
 import { Normalize } from "../../data/functions/Normalize.ts";
 
@@ -14,9 +20,18 @@ function CondicaoBlock(condicao: CondicaoRegra) {
         "&.MuiAccordion-root": {
           bgcolor: "rgba(255, 255, 255, 0.1)",
           transition: "0.3s",
+          boxShadow: "0px 0px 0px 0px rgba(0,0,0)",
+          "&:hover": {
+            bgcolor: "rgba(255, 100, 100, 0.1)",
+            scale: "1.05",
+          },
           "&.Mui-expanded": {
             margin: "0",
-            bgcolor: "white",
+            bgcolor: "rgba(255, 100, 100, 0.2)",
+            scale: "1.0",
+          },
+          "&.Mui-notexpanded": {
+            margin: "0",
           },
           "&.Mui-focused": {
             margin: "0",
@@ -40,9 +55,11 @@ function CondicaoBlock(condicao: CondicaoRegra) {
 export function Condicoes() {
   const [condicoesShown, setCondicoesShown] =
     React.useState<CondicaoRegra[]>(CondicoesRegras);
+  const [search, setSearch] = React.useState<string>("");
 
   function searchCondicoes(value: string) {
     const inputNormalized = Normalize(value.toLowerCase());
+    setSearch(value);
     setCondicoesShown(
       CondicoesRegras.filter(
         (condicao) =>
@@ -57,15 +74,17 @@ export function Condicoes() {
     <div>
       <NavModal icon={<Sick />} tooltip="Condições">
         <h1 className="text-xl text-center">Condições</h1>
-        <input
+        <TextField
+          label="Buscar condição"
           type="text"
-          className="w-full p-2 my-2 bg-gray-100"
-          placeholder="Buscar condição"
+          error
+          className="w-full bg-red-600 rounded-lg bg-opacity-10"
+          value={search}
           onChange={(e) => {
             searchCondicoes(e.target.value);
           }}
         />
-        <div className="max-h-60 overflow-scroll">
+        <div className="max-h-96 overflow-y-scroll overflow-x-hidden">
           <FlipMove typeName={null}>
             {condicoesShown.length !== 0 ? (
               <>
