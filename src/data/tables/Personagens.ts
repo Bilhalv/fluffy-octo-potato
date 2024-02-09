@@ -34,10 +34,10 @@ export const Personagens: Personagem[] = [
       },
     ],
     defesa: 17,
-    pv: 17,
-    pm: 8,
+    pv: 21,
+    pm: 12,
     movimento: 9,
-    nivel: 2,
+    nivel: 3,
     poderes: [
       {
         nome: "Ataque Furtivo",
@@ -105,10 +105,10 @@ export const Personagens: Personagem[] = [
       },
     ],
     defesa: 16,
-    pv: 17,
-    pm: 8,
+    pv: 21,
+    pm: 12,
     movimento: 9,
-    nivel: 2,
+    nivel: 3,
     poderes: [
       {
         nome: "Ataque Furtivo",
@@ -176,10 +176,10 @@ export const Personagens: Personagem[] = [
       },
     ],
     defesa: 16,
-    pv: 24,
-    pm: 15,
+    pv: 30,
+    pm: 20,
     movimento: 9,
-    nivel: 2,
+    nivel: 3,
     poderes: [
       {
         nome: "Canalizar Energia Positiva",
@@ -238,10 +238,10 @@ export const Personagens: Personagem[] = [
       },
     ],
     defesa: 14,
-    pv: 10,
-    pm: 18,
+    pv: 12,
+    pm: 24,
     movimento: 9,
-    nivel: 2,
+    nivel: 3,
     poderes: [
       {
         nome: "Desejos",
@@ -320,10 +320,10 @@ export const Personagens: Personagem[] = [
       },
     ],
     defesa: 16,
-    pv: 21,
-    pm: 8,
+    pv: 27,
+    pm: 12,
     movimento: 9,
-    nivel: 2,
+    nivel: 3,
     poderes: [
       {
         nome: "Cria da Tormenta",
@@ -399,10 +399,10 @@ export const Personagens: Personagem[] = [
       },
     ],
     defesa: 12,
-    pv: 12,
-    pm: 15,
+    pv: 15,
+    pm: 21,
     movimento: 12,
-    nivel: 2,
+    nivel: 3,
     poderes: [
       {
         nome: "Sentidos Élficos",
