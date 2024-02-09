@@ -89,7 +89,7 @@ export default function PersonagemBlock(props: Props) {
               </p>
               <p className="flex gap-2">
                 <p className="text-red-600">Morte</p>-
-                {props.Personagem.pv / 2 < 10 ? 10 : props.Personagem.pv / 2}
+                {props.Personagem.pv / 2 < 10 ? 10 : Math.floor(props.Personagem.pv / 2)}
               </p>
               <p className="flex gap-2">
                 <p className="text-red-600">Movimento</p>
