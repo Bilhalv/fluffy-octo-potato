@@ -29,6 +29,9 @@ export default function Bar(props: Props) {
       props.setAtual(Number(value));
     }
   };
+
+  const value = (props.Atual / props.Max) * 100;
+
   return (
     <>
       <button
@@ -46,7 +49,7 @@ export default function Bar(props: Props) {
               position: "relative",
               zIndex: 10,
             }}
-            value={(props.Atual / props.Max) * 100}
+            value={value > 100 ? 100 : value < 0 ? 0 : value}
           />
         </div>
         <h1 className="mt-[-19px] z-50 text-sm relative text-center text-white">
@@ -71,7 +74,10 @@ export default function Bar(props: Props) {
             padding: "10px",
             display: "flex",
             flexDirection: "column",
-            bgcolor: ( props.cor === "Azul"? "rgba(125, 125, 255, 0.9)" :"rgba(255, 125, 125, 0.9)"),
+            bgcolor:
+              props.cor === "Azul"
+                ? "rgba(125, 125, 255, 0.9)"
+                : "rgba(255, 125, 125, 0.9)",
             color: "white",
             gap: "10px",
             alignItems: "center",
@@ -80,7 +86,12 @@ export default function Bar(props: Props) {
         }}
       >
         <input
-          className={"w-1/2 mx-auto rounded-xl border-2 "+ (props.cor === "Azul" ? "border-blue-500 bg-blue-500" : "border-red-500 bg-red-500")}
+          className={
+            "w-1/2 mx-auto rounded-xl border-2 " +
+            (props.cor === "Azul"
+              ? "border-blue-500 bg-blue-500"
+              : "border-red-500 bg-red-500")
+          }
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               changeStatus(num);
@@ -88,8 +99,16 @@ export default function Bar(props: Props) {
           }}
           onChange={(e) => setNum(e.target.value)}
         />
-        <button type="submit" onClick={() => changeStatus(num)}
-        className={"rounded-xl w-fit px-2 "+ (props.cor !== "Azul" ? "bg-red-500 hover:bg-red-600": "bg-blue-500 hover:bg-blue-600")}>
+        <button
+          type="submit"
+          onClick={() => changeStatus(num)}
+          className={
+            "rounded-xl w-fit px-2 " +
+            (props.cor !== "Azul"
+              ? "bg-red-500 hover:bg-red-600"
+              : "bg-blue-500 hover:bg-blue-600")
+          }
+        >
           confirmar
         </button>
       </Popover>
