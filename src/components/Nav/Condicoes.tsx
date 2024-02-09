@@ -7,13 +7,16 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Input,
+  IconButton,
+  Snackbar,
   TextField,
 } from "@mui/material";
 import FlipMove from "react-flip-move";
 import { Normalize } from "../../data/functions/Normalize.ts";
+import PushPinIcon from "@mui/icons-material/PushPin";
 
 function CondicaoBlock(condicao: CondicaoRegra) {
+  const [snackFixed, setSnackFixed] = React.useState<boolean>(false);
   return (
     <Accordion
       sx={{
@@ -40,7 +43,42 @@ function CondicaoBlock(condicao: CondicaoRegra) {
       }}
     >
       <AccordionSummary>
-        <h1>{condicao.titulo}</h1>
+        <div className="flex justify-between items-center w-full my-[-10px]">
+          <h1>{condicao.titulo}</h1>
+          <IconButton
+            sx={{
+              "&.MuiIconButton-root": {
+                color: "white",
+                bgcolor: "rgba(255, 50, 50, 0.8)",
+                border: "3px solid rgba(255, 255, 255, 1)",
+                transition: "0.3s",
+                "&:hover": {
+                  color: "red",
+                  borderColor: "rgba(255, 50, 50, 1)",
+                  bgcolor: "rgba(0, 0, 0, 0)",
+                },
+              },
+            }}
+            onClick={() => {
+              setSnackFixed(!snackFixed);
+            }}
+          >
+            <PushPinIcon />
+          </IconButton>
+        </div>
+        <Snackbar
+          open={snackFixed}
+          onClose={() => {
+            setSnackFixed(false);
+          }}
+          key={condicao.titulo}
+          message={
+            <div>
+              <h1>{condicao.titulo}</h1>
+              <p>{condicao.descricao}</p>
+            </div>
+          }
+        />
       </AccordionSummary>
       <AccordionDetails>
         <div className="text-sm font-poppins">
