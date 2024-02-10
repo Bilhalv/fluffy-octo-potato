@@ -1,6 +1,7 @@
-import { Button, Paper, Popover } from "@mui/material";
+import { Paper, Popover } from "@mui/material";
 import React, { useState } from "react";
-import { arma, poder, magia } from "../../data/constructors/Personagem";
+import { arma, poder } from "../../data/constructors/Personagem";
+import { magia } from "../../data/functions/findMagia";
 
 interface defaultProps {
   titulo: string;

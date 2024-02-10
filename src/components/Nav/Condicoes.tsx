@@ -1,20 +1,19 @@
-import React from "react";
-import { NavModal } from "./NavModal";
 import { Sick } from "@mui/icons-material";
-import { CondicaoRegra } from "../../data/constructors/Regra";
-import { CondicoesRegras, CondicoesTipos } from "../../data/tables/Regras";
+import PushPinIcon from "@mui/icons-material/PushPin";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Drawer,
   IconButton,
-  Snackbar,
-  TextField,
+  TextField
 } from "@mui/material";
+import React from "react";
 import FlipMove from "react-flip-move";
+import { CondicaoRegra } from "../../data/constructors/Regra";
 import { Normalize } from "../../data/functions/Normalize.ts";
-import PushPinIcon from "@mui/icons-material/PushPin";
+import { CondicoesRegras } from "../../data/tables/Regras";
+import { NavModal } from "./NavModal";
 
 function CondicaoToast({
   CondicaoRegra,

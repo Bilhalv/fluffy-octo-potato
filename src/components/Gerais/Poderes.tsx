@@ -1,7 +1,7 @@
-import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
-import { poder } from "../../data/constructors/Personagem";
-import React from "react";
 import { ArrowDropUp } from "@mui/icons-material";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import React from "react";
+import { poder } from "../../data/constructors/Personagem";
 import { PopoverComponent } from "./Popovers";
 
 interface Props {

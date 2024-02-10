@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { ArrowLeft, ArrowRight, Delete } from "@mui/icons-material";
 import {
   Accordion,
   AccordionDetails,
@@ -6,12 +6,12 @@ import {
   Avatar,
   IconButton,
 } from "@mui/material";
-import Bar from "../Gerais/Bar";
-import Poderes from "../Gerais/Poderes";
-import Magias from "../Gerais/Magias";
+import React, { useContext, useState } from "react";
 import { NPCShown } from "../../data/constructors/NPC";
-import { ArrowLeft, ArrowRight, Delete } from "@mui/icons-material";
 import { NPCsContext } from "../../pages/Home";
+import Bar from "../Gerais/Bar";
+import Magias from "../Gerais/Magias";
+import Poderes from "../Gerais/Poderes";
 
 interface Props {
   NPC: NPCShown;

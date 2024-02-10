@@ -1,5 +1,3 @@
-import React, { useEffect } from "react";
-import { Personagens } from "../../data/tables/Personagens";
 import {
   AccessTime,
   ArrowBackIos,
@@ -7,9 +5,11 @@ import {
   NotInterested,
   SwapVert,
 } from "@mui/icons-material";
-import { NavModal } from "./NavModal";
+import { IconButton, TextField } from "@mui/material";
+import React from "react";
 import FlipMove from "react-flip-move";
-import { IconButton, Input, TextField } from "@mui/material";
+import { Personagens } from "../../data/tables/Personagens";
+import { NavModal } from "./NavModal";
 
 type turn = {
   nome: string;

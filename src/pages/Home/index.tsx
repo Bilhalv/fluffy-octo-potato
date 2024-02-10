@@ -1,10 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import PersonagemBlock from "../../components/Fichas/Personagem";
-import { Personagens } from "../../data/tables/Personagens";
-import NPCBlock from "../../components/Fichas/NPC";
-import { NPCShown } from "../../data/constructors/NPC";
-import Nav from "../../components/Nav/Nav";
 import FlipMove from "react-flip-move";
+import NPCBlock from "../../components/Fichas/NPC";
+import PersonagemBlock from "../../components/Fichas/Personagem";
+import Nav from "../../components/Nav/Nav";
+import { NPCShown } from "../../data/constructors/NPC";
+import { Personagens } from "../../data/tables/Personagens";
 
 interface NPCsContextProps {
   npcsShown: NPCShown[];

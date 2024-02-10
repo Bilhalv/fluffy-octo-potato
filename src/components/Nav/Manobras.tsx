@@ -1,6 +1,6 @@
+import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 import React from "react";
 import { NavModal } from "./NavModal";
-import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 
 export function Manobras() {
   return (

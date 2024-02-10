@@ -1,11 +1,11 @@
 import { Add, AddCircle } from "@mui/icons-material";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useContext } from "react";
+import { NPCShown } from "../../data/constructors/NPC";
 import { NPCs } from "../../data/tables/NPCs";
-import { NavModal } from "./NavModal";
 import { NPCsContext } from "../../pages/Home";
 import NPCBlock from "../Fichas/NPC";
-import { NPCShown } from "../../data/constructors/NPC";
+import { NavModal } from "./NavModal";
 
 export function AddNpc() {
   const { npcsShown, addNPC } = useContext(NPCsContext);

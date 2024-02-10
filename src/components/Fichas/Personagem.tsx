@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Personagem from "../../data/constructors/Personagem";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Avatar,
 } from "@mui/material";
+import React, { useState } from "react";
+import Personagem from "../../data/constructors/Personagem";
 import Bar from "../Gerais/Bar";
-import Poderes from "../Gerais/Poderes";
 import Magias from "../Gerais/Magias";
+import Poderes from "../Gerais/Poderes";
 
 interface Props {
   Personagem: Personagem;

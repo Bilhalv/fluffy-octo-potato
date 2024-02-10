@@ -1,6 +1,6 @@
+import { DirectionsRun } from "@mui/icons-material";
 import React from "react";
 import { NavModal } from "./NavModal";
-import { DirectionsRun } from "@mui/icons-material";
 
 export function Acoes() {
   return (
