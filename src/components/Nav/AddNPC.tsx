@@ -11,7 +11,7 @@ export function AddNpc() {
   const { npcsShown, addNPC } = useContext(NPCsContext);
 
   const [selectedNpc, setSelectedNpc] = React.useState<string>();
-  const addNpc = () => {
+  const addNpcConst = () => {
     const npc: NPCShown = {
       ...(NPCs.find((item) => item.nome === selectedNpc) || NPCs[0]),
       id: npcsShown.length + 1,
@@ -48,7 +48,7 @@ export function AddNpc() {
             />
           )}
           <button
-            onClick={addNpc}
+            onClick={addNpcConst}
             className="bg-green-600 p-2 rounded-full hover:scale-110 hover:bg-green-400 transition-all"
           >
             <AddCircle />
