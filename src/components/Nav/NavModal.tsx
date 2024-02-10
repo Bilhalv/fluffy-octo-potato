@@ -36,9 +36,14 @@ export function NavModal({ icon, children, tooltip }: Props) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          "& .MuiDrawer-paper": {
+            bgcolor: "rgba(255, 255, 255, 0.1)",
+            color: "white",
+            backdropFilter: "blur(5px)",
+          },
         }}
       >
-        <div className="bg-white bg-opacity-75 w-1/2 p-4 mx-auto rounded-xl my-auto font-tormenta">
+        <div className="bg-white bg-opacity-10 backdrop-blur w-1/2 p-4 mx-auto rounded-xl my-auto font-tormenta">
           {children as React.ReactElement}
         </div>
       </Modal>
