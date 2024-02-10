@@ -9,7 +9,7 @@ import {
 } from "@mui/icons-material";
 import { NavModal } from "./NavModal";
 import FlipMove from "react-flip-move";
-import { IconButton } from "@mui/material";
+import { IconButton, Input, TextField } from "@mui/material";
 
 type turn = {
   nome: string;
@@ -35,14 +35,22 @@ function TurnsBlock({ turnOrder, changeTurnOrder, active }: BlockProps) {
               (active === turn.nome ? "text-red-600 font-bold" : "")
             }
           >
-            <span>
+            <p className="w-full">
               ({turn.desempate}) {turn.nome}
-            </span>
-            <input
+            </p>
+            <TextField
               type="number"
+              variant="standard"
               value={turn.iniciativa}
               onChange={(e) => changeTurnOrder(index, parseInt(e.target.value))}
-              className="text-center"
+              color="error"
+              size="small"
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  color: "white",
+                },
+              }}
             />
           </div>
         ))}
