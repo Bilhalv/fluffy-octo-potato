@@ -49,7 +49,7 @@ export function AddNpc() {
           )}
           <button
             onClick={addNpcConst}
-            className="bg-green-600 p-2 rounded-full hover:scale-110 hover:bg-green-400 transition-all"
+            className="bg-green-600 p-2 rounded-full hover:scale-110 hover:bg-green-400 transition-all w-fit mx-auto mt-2"
           >
             <AddCircle />
           </button>
