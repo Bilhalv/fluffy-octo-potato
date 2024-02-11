@@ -25,11 +25,7 @@ export default function NPCBlock(props: Props) {
 
   return (
     <>
-      <div
-        className={
-          "p-7 rounded-2xl gap-3 w-full " + props.isModal ? "" : "desktop:w-2/5"
-        }
-      >
+      <div className={"p-7 rounded-2xl gap-3 w-full"}>
         <Accordion
           sx={{
             bgcolor: "rgba(255, 255, 255, 0.6)",
