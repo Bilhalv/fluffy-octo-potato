@@ -1,4 +1,5 @@
-import { Modal, Tooltip } from "@mui/material";
+import { Modal } from "@mui/material";
+import { Tooltip } from "react-tooltip";
 import React from "react";
 
 interface Props {
@@ -15,20 +16,22 @@ export function NavModal({ icon, children, tooltip }: Props) {
   return (
     <>
       <Tooltip
-        title={
-          <>
-            <div className="font-tormenta">{tooltip}</div>
-          </>
-        }
-        arrow
+        id="my-tooltip"
+        style={{
+          backgroundColor: "rgba(255, 0, 0, 0.3)",
+          textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
+        }}
+      />
+
+      <button
+        onClick={toggleModal}
+        className="p-2 bg-red-600 rounded-full hover:scale-110 hover:bg-red-400 transition-all"
+        data-tooltip-id="my-tooltip"
+        data-tooltip-content={tooltip}
+        data-tooltip-variant="error"
       >
-        <button
-          onClick={toggleModal}
-          className="p-2 bg-red-600 rounded-full hover:scale-110 hover:bg-red-400 transition-all"
-        >
-          {icon}
-        </button>
-      </Tooltip>
+        {icon}
+      </button>
       <Modal
         open={modalOpen}
         onClose={toggleModal}
