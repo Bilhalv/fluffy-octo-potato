@@ -12,7 +12,7 @@ interface ToastProps {
 export function showToast({ title, message, duration = 3000 }: ToastProps) {
   toast(
     <>
-      <h1 className="text-center">{title}</h1>
+      <h1 className="text-center font-tormenta">{title}</h1>
       <p className="text-justify">{message.toString()}</p>
     </>,
     {
@@ -24,6 +24,13 @@ export function showToast({ title, message, duration = 3000 }: ToastProps) {
       draggable: true,
       theme: "dark",
       transition: Bounce,
+      closeButton: false,
+      style: {
+        backgroundColor: "rgba(0, 0, 0, 0.4)",
+        textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
+        backdropFilter: "blur(5px)",
+        fontSize: "15px",
+      },
     }
   );
 }
