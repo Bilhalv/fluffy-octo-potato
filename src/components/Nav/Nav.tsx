@@ -1,5 +1,5 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import React from "react";
+import React, { useContext } from "react";
 import { Acoes } from "./Acoes";
 import { AddNpc } from "./AddNPC";
 import { Condicoes } from "./Condicoes";
@@ -7,6 +7,10 @@ import { Manobras } from "./Manobras";
 import { TurnOrder } from "./TurnOrder";
 import { regras } from "../../data/constructors/Regra";
 import { PDF } from "./PDF";
+import { Eraser } from "lucide-react";
+import { Tooltip } from "react-tooltip";
+import { NPCsContext } from "../../pages/Home";
+import { showToast } from "../Gerais/ToastComponent";
 
 interface fixedContextProps {
   regrasFixadas: regras[];
@@ -19,6 +23,7 @@ export const fixedContext = React.createContext<fixedContextProps>({
 });
 
 export default function Nav() {
+  const { setNpcsShown } = useContext(NPCsContext);
   const [tempAside, setTempAside] = React.useState<boolean>(false);
   const [aside, setAside] = React.useState<boolean>(false);
   function toggleAside() {
@@ -47,6 +52,30 @@ export default function Nav() {
             <Condicoes />
             <Manobras />
             <PDF />
+            <button
+              className="p-2 bg-red-600 rounded-full hover:scale-110 hover:bg-red-400 transition-all"
+              onClick={() => {
+                localStorage.setItem("npcs", JSON.stringify([]));
+                setNpcsShown([]);
+                showToast({
+                  title: "NPC's Limpos",
+                  message: "Todos os NPC's foram removidos",
+                  duration: 3000,
+                });
+              }}
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content="Limpar NPC's"
+              data-tooltip-variant="error"
+            >
+              <Eraser />
+            </button>
+            <Tooltip
+              id="my-tooltip"
+              style={{
+                backgroundColor: "rgba(255, 0, 0, 0.3)",
+                textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
+              }}
+            />
           </aside>
         ) : (
           <button
