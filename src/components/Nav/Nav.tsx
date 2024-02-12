@@ -1,4 +1,4 @@
-import { Print, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React from "react";
 import { Acoes } from "./Acoes";
 import { AddNpc } from "./AddNPC";
@@ -6,7 +6,6 @@ import { Condicoes } from "./Condicoes";
 import { Manobras } from "./Manobras";
 import { TurnOrder } from "./TurnOrder";
 import { regras } from "../../data/constructors/Regra";
-import { FixedComponent } from "./FixedComponent";
 import { PDF } from "./PDF";
 
 interface fixedContextProps {
@@ -47,7 +46,6 @@ export default function Nav() {
             <Acoes />
             <Condicoes />
             <Manobras />
-            <FixedComponent />
             <PDF />
           </aside>
         ) : (
