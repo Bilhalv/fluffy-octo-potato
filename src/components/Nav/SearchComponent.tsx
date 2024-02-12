@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { PushPin } from "@mui/icons-material";
 import { Normalize } from "../../data/functions/Normalize";
-import { fixedContext } from "./Nav";
+import { showToast } from "../Gerais/ToastComponent";
 
 interface BlockProps {
   regra: regras;
@@ -98,15 +98,12 @@ export function SearchComponent({ regras }: SearchComponentProps) {
       )
     );
   }
-
-  const { regrasFixadas, setRegrasFixadas } = React.useContext(fixedContext);
-
   const changefixed = (regra: regras) => {
-    if (!regrasFixadas.includes(regra)) {
-      setRegrasFixadas([...regrasFixadas, regra]);
-    } else {
-      setRegrasFixadas(regrasFixadas.filter((c) => c !== regra));
-    }
+    showToast({
+      title: regra.titulo,
+      message: regra.descricao,
+      duration: false,
+    });
   };
 
   return (

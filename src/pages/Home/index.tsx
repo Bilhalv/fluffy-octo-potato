@@ -5,6 +5,8 @@ import PersonagemBlock from "../../components/Fichas/Personagem";
 import Nav from "../../components/Nav/Nav";
 import { NPCShown } from "../../data/constructors/NPC";
 import { Personagens } from "../../data/tables/Personagens";
+import { showToast } from "../../components/Gerais/ToastComponent";
+import { ToastContainer } from "react-toastify";
 
 interface NPCsContextProps {
   npcsShown: NPCShown[];
@@ -50,9 +52,19 @@ const Home = () => {
   function addNPC(npc: NPCShown | NPCShown[]) {
     if (Array.isArray(npc)) {
       setNpcsShown([...npcsShown, ...npc]);
+      showToast({
+        title: "NPCs Adicionados",
+        message: `${npc.length} NPCs foram adicionados à lista de NPCs`,
+        duration: 3000,
+      });
       return;
     } else {
       setNpcsShown([...npcsShown, npc]);
+      showToast({
+        title: "NPC Adicionado",
+        message: `${npc.nome} foi adicionado à lista de NPCs`,
+        duration: 3000,
+      });
     }
   }
 
@@ -90,6 +102,7 @@ const Home = () => {
               </FlipMove>
             </div>
           )}
+          <ToastContainer stacked />
         </body>
       </NPCsContext.Provider>
     </>
