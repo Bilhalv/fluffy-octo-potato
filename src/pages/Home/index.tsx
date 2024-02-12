@@ -11,7 +11,7 @@ interface NPCsContextProps {
   setNpcsShown: React.Dispatch<React.SetStateAction<NPCShown[]>>;
   deleteNPC: (id: number) => void;
   moveNPC: (pos: string, index: number) => void;
-  addNPC: (newNPC: NPCShown) => void;
+  addNPC: (newNPC: NPCShown | NPCShown[]) => void;
 }
 
 export const NPCsContext = createContext<NPCsContextProps>({
@@ -47,8 +47,13 @@ const Home = () => {
     }
   }
 
-  function addNPC(npc: NPCShown) {
-    setNpcsShown([...npcsShown, npc]);
+  function addNPC(npc: NPCShown | NPCShown[]) {
+    if (Array.isArray(npc)) {
+      setNpcsShown([...npcsShown, ...npc]);
+      return;
+    } else {
+      setNpcsShown([...npcsShown, npc]);
+    }
   }
 
   useEffect(() => {

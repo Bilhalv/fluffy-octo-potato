@@ -783,3 +783,15 @@ const Av1: NPC[] = [
 ];
 
 export const NPCs: NPC[] = [...Av1];
+
+type Group = {
+  nome: string;
+  npcs: NPC[];
+}
+
+export const Groups: Group[] = [
+  {
+    nome: "Trupe do Zelin",
+    npcs: [...Av1Pt3],
+  }
+]
