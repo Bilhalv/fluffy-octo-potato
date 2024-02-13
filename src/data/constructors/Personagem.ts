@@ -14,6 +14,7 @@ export type arma = info & {
     dano: string;
     acerto: number;
     crit: string;
+    arcance: string;
 }
 
 

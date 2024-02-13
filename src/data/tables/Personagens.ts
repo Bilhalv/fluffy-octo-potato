@@ -143,6 +143,16 @@ export const Personagens: Personagem[] = [
     ],
     img: "https://i.ibb.co/C9fwJc9/Bulan.png",
     magias: [findMagia("Escuridão")],
+    armas: [
+      {
+        nome: "Adaga",
+        desc: "1d4",
+        dano: "1d4",
+        acerto: 2,
+        crit: "20/x2",
+        alcance: "3m",
+      },
+    ],
   },
   {
     player: "Diggo",
