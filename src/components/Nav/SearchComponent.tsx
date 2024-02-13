@@ -26,6 +26,7 @@ function Block({ regra, changeFixed }: BlockProps) {
             bgcolor: "rgba(255, 255, 255, 0.1)",
             transition: "0.3s",
             boxShadow: "0px 0px 0px 0px rgba(0,0,0)",
+            borderRadius: "0px",
             "&:hover": {
               bgcolor: "rgba(255, 100, 100, 0.1)",
               scale: "1.05",
@@ -113,18 +114,26 @@ export function SearchComponent({ regras, icon, title }: SearchComponentProps) {
     <>
       <NavModal icon={icon} tooltip={title}>
         <h1 className="text-xl text-center">{title}</h1>
-
         <TextField
           label="Buscar Regras"
           type="text"
           error
-          className="w-full bg-red-600 rounded-lg bg-opacity-10"
+          sx={{
+            "& .MuiInputBase-root": {
+              bgcolor: "rgba(255, 255, 255, 0.2)",
+              borderTopLeftRadius: "16px",
+              borderTopRightRadius: "16px",
+              borderBottomLeftRadius: "0px",
+              borderBottomRightRadius: "0px",
+            },
+          }}
+          className="w-full"
           value={search}
           onChange={(e) => {
             searchRegras(e.target.value);
           }}
         />
-        <div className="max-h-96 overflow-y-scroll overflow-x-hidden">
+        <div className="max-h-96 overflow-y-scroll overflow-x-hidden rounded-b-2xl">
           {regrasShow.map((regra) => (
             <Block regra={regra} changeFixed={changefixed} />
           ))}
