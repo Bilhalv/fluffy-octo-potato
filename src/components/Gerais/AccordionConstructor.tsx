@@ -1,17 +1,20 @@
 import { ArrowDropUp } from "@mui/icons-material";
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import React from "react";
-import { arma } from "../../data/constructors/Personagem";
+import { poder, arma } from "../../data/constructors/Personagem";
+import { magia } from "../../data/functions/findMagia";
 import { PopoverComponent } from "./Popovers";
 
 interface Props {
-  armas: arma[];
+    titulo: string;
+    children: magia[] | poder[] | arma[];
 }
 
-export default function Armas(props: Props) {
+export default function AccordionConstructor(
+    props: Props
+) {
   return (
-    <>
-      <Accordion
+    <Accordion
         variant="outlined"
         sx={{
           bgcolor: "rgba(0, 0, 0, 0.15)",
@@ -19,21 +22,20 @@ export default function Armas(props: Props) {
           margin: "10px",
         }}
       >
-        <AccordionSummary expandIcon={<ArrowDropUp />}>Armas</AccordionSummary>
+        <AccordionSummary expandIcon={<ArrowDropUp />}>{props.titulo}</AccordionSummary>
         <AccordionDetails
           sx={{
             bgcolor: "rgba(0, 0, 0, 0.15)",
           }}
         >
           <ul className="flex flex-col gap-4 text-red-700/75 list-disc ml-4">
-            {props.armas.map((arma) => (
+            {props.children.map((data) => (
               <li>
-                <PopoverComponent data={arma} />
+                <PopoverComponent data={data} />
               </li>
             ))}
           </ul>
         </AccordionDetails>
       </Accordion>
-    </>
   );
 }

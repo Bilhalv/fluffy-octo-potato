@@ -19,22 +19,18 @@ export default function Magias(props: Props) {
           margin: "10px",
         }}
       >
-        <AccordionSummary expandIcon={<ArrowDropUp />}>
-          Magias
-        </AccordionSummary>
+        <AccordionSummary expandIcon={<ArrowDropUp />}>Magias</AccordionSummary>
         <AccordionDetails
           sx={{
             bgcolor: "rgba(0, 0, 0, 0.15)",
           }}
         >
-          <ul className="flex flex-col gap-4 text-red-600 list-disc">
+          <ul className="flex flex-col gap-4 text-red-700/75 list-disc ml-4">
             {props.magia.map(
               (magia, index) =>
                 magia && (
                   <li key={index}>
-                    <b>
-                      <PopoverComponent data={magia} />
-                    </b>
+                    <PopoverComponent data={magia} />
                   </li>
                 )
             )}

@@ -34,10 +34,12 @@ export function DefaultPopover({ titulo, content }: defaultProps) {
         sx={{
           "& .MuiPopover-paper": {
             width: "50%",
+            backdropFilter: "blur(5px)",
+            backgroundColor: "RGB(255,255,255,0.5)",
           },
         }}
       >
-        <Paper>{content}</Paper>
+        {content}
       </Popover>
     </>
   );
@@ -80,20 +82,25 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
     case "crit" in data:
       content = (
         //arma
-        <div>
+        <div className="p-4">
           <h1 className="text-center font-bold text-red-600">{data.nome}</h1>
-          <ul>
-            <li>
-              <b className="text-red-600">Acerto</b> {data.acerto}
-            </li>
-            <li>
-              <b className="text-red-600">Dano</b> {data.dano}
-            </li>
-            <li>
-              <b className="text-red-600">Crítico</b> {data.crit}
-            </li>
-          </ul>
-          <i>&nbsp;&nbsp;&nbsp;{data.desc}</i>
+          <div className="flex justify-between">
+            <ul>
+              {[
+                "Tipo",
+                "Dano",
+                "Acerto",
+                "Dano",
+                "Crit",
+                "Alcance",
+              ].map((x, index) => (
+                <li key={index}>
+                  <b className="text-red-600">{x}</b> {data[x.toLowerCase()]}
+                </li>
+              ))}
+            </ul>
+            <i>&nbsp;&nbsp;&nbsp;{data.desc}</i>
+          </div>
         </div>
       );
       break;
@@ -179,11 +186,13 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
     default:
       content = (
         //poder
-        <div>
+        <div className="p-3">
           <b className="text-red-600">
             {data.nome} {data.acao && `(${data.acao})`}
           </b>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;{data.desc}.</div>
+          <div className="text-justify">
+            &nbsp;&nbsp;&nbsp;&nbsp;{data.desc}
+          </div>
         </div>
       );
       titulo =

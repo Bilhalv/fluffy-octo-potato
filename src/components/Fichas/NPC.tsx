@@ -12,6 +12,7 @@ import { NPCsContext } from "../../pages/Home";
 import Bar from "../Gerais/Bar";
 import Magias from "../Gerais/Magias";
 import Poderes from "../Gerais/Poderes";
+import AccordionConstructor from "../Gerais/AccordionConstructor";
 
 interface Props {
   NPC: NPCShown;
@@ -179,8 +180,18 @@ export default function NPCBlock(props: Props) {
                 {props.NPC.tesouro}
               </p>
             </div>
-            {props.NPC.poderes && <Poderes poder={[...props.NPC.poderes]} />}
-            {props.NPC.magias && <Magias magia={[...props.NPC.magias]} />}
+            {props.NPC.poderes && (
+              <AccordionConstructor
+                titulo={"Poderes"}
+                children={[...props.NPC.poderes]}
+              />
+            )}
+            {props.NPC.magias && (
+              <AccordionConstructor
+                titulo={"Magias"}
+                children={[...props.NPC.magias]}
+              />
+            )}
           </AccordionDetails>
         </Accordion>
       </div>

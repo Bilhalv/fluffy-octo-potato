@@ -11,6 +11,7 @@ import Magias from "../Gerais/Magias";
 import Poderes from "../Gerais/Poderes";
 import { ArrowDropUp } from "@mui/icons-material";
 import Armas from "../Gerais/Armas";
+import AccordionConstructor from "../Gerais/AccordionConstructor";
 
 interface Props {
   Personagem: Personagem;
@@ -102,13 +103,22 @@ export default function PersonagemBlock(props: Props) {
               </p>
             </div>
             {props.Personagem.poderes && (
-              <Poderes poder={[...props.Personagem.poderes]} />
+              <AccordionConstructor
+                titulo={"Poderes"}
+                children={[...props.Personagem.poderes]}
+              />
             )}
             {props.Personagem.magias && (
-              <Magias magia={[...props.Personagem.magias]} />
+              <AccordionConstructor
+                titulo={"Magias"}
+                children={[...props.Personagem.magias]}
+              />
             )}
             {props.Personagem.armas && (
-              <Armas armas={[...props.Personagem.armas]} />
+              <AccordionConstructor
+                titulo={"Armas"}
+                children={[...props.Personagem.armas]}
+              />
             )}
           </AccordionDetails>
         </Accordion>

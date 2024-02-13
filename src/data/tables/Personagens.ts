@@ -72,6 +72,16 @@ export const Personagens: Personagem[] = [
       },
     ],
     img: "https://i.ibb.co/rfZHCpj/Debs.png",
+    armas: [
+      {
+        nome: "Arco Curto",
+        desc: "Mitral injecao alquimica",
+        dano: "1d6",
+        acerto: 2, //TODO
+        crit: "19/x3",
+        alcance: "Médio(30m/20sq)",
+      },
+    ],
   },
   {
     player: "Bulan",
@@ -145,12 +155,12 @@ export const Personagens: Personagem[] = [
     magias: [findMagia("Escuridão")],
     armas: [
       {
-        nome: "Adaga",
-        desc: "1d4",
-        dano: "1d4",
-        acerto: 2,
-        crit: "20/x2",
-        alcance: "3m",
+        nome: "Espada Curta",
+        desc: "Mitral Macica",
+        dano: "1d6",
+        acerto: 2, //TODO
+        crit: "18/x3",
+        alcance: "Pessoal",
       },
     ],
   },
@@ -174,11 +184,11 @@ export const Personagens: Personagem[] = [
       },
       {
         nome: "Inteligência",
-        valor: 1,
+        valor: 2,
       },
       {
         nome: "Sabedoria",
-        valor: 5,
+        valor: 6,
       },
       {
         nome: "Carisma",
@@ -206,6 +216,11 @@ export const Personagens: Personagem[] = [
         desc: "Você recebe +2 em Diplomacia e Intuição.",
         acao: "Livre",
       },
+      {
+        nome: "Medalhão de prata",
+        desc: "-1Pm para magias de range pessoal, pode pagar 2PM para aumentar o DT, +2 de defesa.",
+        acao: "Livre",
+      }
     ],
     img: "https://i.ibb.co/jfYVJtg/Diggo.png",
     magias: [
@@ -423,6 +438,11 @@ export const Personagens: Personagem[] = [
         nome: "Raio Arcano",
         desc: "Você pode gastar uma ação padrão para causar 1d8 pontos de dano de essência num alvo em alcance curto. Esse dano aumenta em +1d8 para cada círculo de magia acima do 1º que você puder lançar. O alvo pode fazer um teste de Reflexos (CD atributo-chave) para reduzir o dano à metade. O raio arcano conta como uma magia para efeitos de habilidades e itens que beneficiem suas magias.",
         acao: "Padrão",
+      },
+      {
+        nome: "Cajado Arcano",
+        desc: "Limite de PM +1 e cd +1, Pode gastar 1pm pra rerolar resultado de 1 de dano.",
+        acao: "Livre",
       },
     ],
     img: "https://i.ibb.co/42Kdr9T/Moni.png",
