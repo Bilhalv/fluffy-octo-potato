@@ -10,8 +10,6 @@ import React, { useContext, useState } from "react";
 import { NPCShown } from "../../data/constructors/NPC";
 import { NPCsContext } from "../../pages/Home";
 import Bar from "../Gerais/Bar";
-import Magias from "../Gerais/Magias";
-import Poderes from "../Gerais/Poderes";
 import AccordionConstructor from "../Gerais/AccordionConstructor";
 
 interface Props {

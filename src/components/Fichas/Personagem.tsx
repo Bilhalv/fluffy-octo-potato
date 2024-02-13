@@ -7,10 +7,6 @@ import {
 import React, { useState } from "react";
 import Personagem from "../../data/constructors/Personagem";
 import Bar from "../Gerais/Bar";
-import Magias from "../Gerais/Magias";
-import Poderes from "../Gerais/Poderes";
-import { ArrowDropUp } from "@mui/icons-material";
-import Armas from "../Gerais/Armas";
 import AccordionConstructor from "../Gerais/AccordionConstructor";
 
 interface Props {
