@@ -31,6 +31,11 @@ export function DefaultPopover({ titulo, content }: defaultProps) {
         open={!!anchorEl}
         anchorEl={anchorEl}
         onClose={handleClose}
+        sx={{
+          "& .MuiPopover-paper": {
+            width: "50%",
+          },
+        }}
       >
         <Paper>{content}</Paper>
       </Popover>
@@ -153,6 +158,20 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
           </div>
           <div className="bg-white bg-opacity-75 p-2 rounded-xl">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;{data.desc}.</p>
+            {data.aprimoramentos &&
+              data.aprimoramentos.map((aprimoramento, index) =>
+                aprimoramento.custo > 0 ? (
+                  <p key={index}>
+                    <b className="text-red-600">+{aprimoramento.custo}pm</b>
+                    &nbsp;&nbsp;{aprimoramento.desc}.
+                  </p>
+                ) : (
+                  <p key={index}>
+                    <b className="text-red-600">Truque</b>&nbsp;&nbsp;
+                    {aprimoramento.desc}.
+                  </p>
+                )
+              )}
           </div>
         </div>
       );
