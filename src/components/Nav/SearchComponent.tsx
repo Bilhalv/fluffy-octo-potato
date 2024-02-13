@@ -10,6 +10,7 @@ import {
 import { PushPin } from "@mui/icons-material";
 import { Normalize } from "../../data/functions/Normalize";
 import { showToast } from "../Gerais/ToastComponent";
+import { NavModal } from "./NavModal";
 
 interface BlockProps {
   regra: regras;
@@ -80,9 +81,11 @@ function Block({ regra, changeFixed }: BlockProps) {
 
 interface SearchComponentProps {
   regras: regrasArray;
+  icon: any;
+  title: string;
 }
 
-export function SearchComponent({ regras }: SearchComponentProps) {
+export function SearchComponent({ regras, icon, title }: SearchComponentProps) {
   const [regrasShow, setRegrasShow] = React.useState<regrasArray>(regras);
 
   const [search, setSearch] = React.useState<string>("");
@@ -108,21 +111,25 @@ export function SearchComponent({ regras }: SearchComponentProps) {
 
   return (
     <>
-      <TextField
-        label="Buscar Regras"
-        type="text"
-        error
-        className="w-full bg-red-600 rounded-lg bg-opacity-10"
-        value={search}
-        onChange={(e) => {
-          searchRegras(e.target.value);
-        }}
-      />
-      <div className="max-h-96 overflow-y-scroll overflow-x-hidden">
-        {regrasShow.map((regra) => (
-          <Block regra={regra} changeFixed={changefixed} />
-        ))}
-      </div>
+      <NavModal icon={icon} tooltip={title}>
+        <h1 className="text-xl text-center">{title}</h1>
+
+        <TextField
+          label="Buscar Regras"
+          type="text"
+          error
+          className="w-full bg-red-600 rounded-lg bg-opacity-10"
+          value={search}
+          onChange={(e) => {
+            searchRegras(e.target.value);
+          }}
+        />
+        <div className="max-h-96 overflow-y-scroll overflow-x-hidden">
+          {regrasShow.map((regra) => (
+            <Block regra={regra} changeFixed={changefixed} />
+          ))}
+        </div>
+      </NavModal>
     </>
   );
 }

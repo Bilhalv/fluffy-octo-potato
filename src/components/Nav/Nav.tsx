@@ -1,9 +1,12 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  AirlineStops,
+  DirectionsRun,
+  Sick,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 import React, { useContext } from "react";
-import { Acoes } from "./Acoes";
 import { AddNpc } from "./AddNPC";
-import { Condicoes } from "./Condicoes";
-import { Manobras } from "./Manobras";
 import { TurnOrder } from "./TurnOrder";
 import { regras } from "../../data/constructors/Regra";
 import { PDF } from "./PDF";
@@ -11,6 +14,12 @@ import { Eraser } from "lucide-react";
 import { Tooltip } from "react-tooltip";
 import { NPCsContext } from "../../pages/Home";
 import { showToast } from "../Gerais/ToastComponent";
+import { SearchComponent } from "./SearchComponent";
+import {
+  AcoesRegras,
+  CondicoesRegras,
+  ManobrasRegras,
+} from "../../data/tables/Regras";
 
 interface fixedContextProps {
   regrasFixadas: regras[];
@@ -48,9 +57,21 @@ export default function Nav() {
             </button>
             <AddNpc />
             <TurnOrder />
-            <Acoes />
-            <Condicoes />
-            <Manobras />
+            <SearchComponent
+              icon={<DirectionsRun />}
+              regras={AcoesRegras}
+              title="Acoes"
+            />
+            <SearchComponent
+              icon={<Sick />}
+              regras={CondicoesRegras}
+              title="Condicoes"
+            />
+            <SearchComponent
+              icon={<AirlineStops />}
+              regras={ManobrasRegras}
+              title="Manobras"
+            />
             <PDF />
             <button
               className="p-2 bg-red-600 rounded-full hover:scale-110 hover:bg-red-400 transition-all"
