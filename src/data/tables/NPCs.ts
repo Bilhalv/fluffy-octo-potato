@@ -809,7 +809,7 @@ const Mineradores: NPC[] = [
     nd: 1 / 2,
     pericias: [],
     tesouro: "Nenhum.",
-    img: "https://i.imgur.com/2UNiJ6w.png",
+    img: "https://i.ibb.co/YXnZLPh/An-o-Capanga.png",
     atributos: [
       {
         nome: "Força",
@@ -895,7 +895,7 @@ const StrokaECapangas: NPC[] = [
     nd: 3,
     pericias: [],
     tesouro: "Escudo pesado reforçado, martelo de guerra cruel, meia armadura.",
-    img: "https://i.imgur.com/hbebsWR.png",
+    img: "https://i.ibb.co/f1YBfr8/Stroka.png",
     atributos: [
       {
         nome: "Força",
@@ -951,6 +951,33 @@ export const Aventuras: Aventura[] = [
   {
     label: "O Segredo das Minas",
     npcs: [],
-    groups: [],
+    groups: [
+      {
+        nome: "Stroka e Capangas",
+        npcs: StrokaECapangas,
+      },
+    ],
   },
 ];
+
+/*
+"https://i.ibb.co/JdNXHW1/Abomina-o-Rubi.png"
+"https://i.ibb.co/KmJ86Nw/An-o-Veterano.png"
+"https://i.ibb.co/x234vW6/C-pia-de-Gorlogg.png"
+"https://i.ibb.co/PT284TX/C-pia-de-Gorlogg.png"
+"https://i.ibb.co/Z2TMS4M/Guardi-o-de-A-o.png"
+"https://i.ibb.co/16dX6Ls/Guardi-o-de-Rubi.png"
+"https://i.ibb.co/TBxPt9F/Humano-Matador.png"
+"https://i.ibb.co/0jGKsvL/Humano-Mercen-rio.png"
+"https://i.ibb.co/B6kgsq8/Jaren.png"
+"https://i.ibb.co/LdMv819/K.png"
+"https://i.ibb.co/8rc6rRv/Lobo.png"
+"https://i.ibb.co/PCzSLnZ/Lonien.png"
+"https://i.ibb.co/BTt9yKz/Mago-Mercen-rio.png"
+"https://i.ibb.co/ZKSQgPM/Minerador.png"
+"https://i.ibb.co/6Zxrm0H/Mineradora.png"
+"https://i.ibb.co/VH8SXvb/Thr-n.png"
+"https://i.ibb.co/86c63jX/Token-guardiao-rubi.png"
+"https://i.ibb.co/d6VHYRg/Troll-Rubi.png"
+"https://i.ibb.co/jZMqKVt/Zurah.png"
+*/
