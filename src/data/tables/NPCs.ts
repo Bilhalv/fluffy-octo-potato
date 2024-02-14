@@ -1,6 +1,6 @@
 import { NPC } from "../constructors/NPC";
 
-const Av1Pt2: NPC[] = [
+const TrabalhoDuro: NPC[] = [
   {
     nome: "Estátua Animada",
     categoria: "Construto",
@@ -213,7 +213,7 @@ const Av1Pt2: NPC[] = [
   },
 ];
 
-const Av1Pt3: NPC[] = [
+const TrupeZelin: NPC[] = [
   {
     nome: "Zelin Alexavich",
     categoria: "Humanoide",
@@ -777,8 +777,6 @@ const Av1Pt3: NPC[] = [
   },
 ];
 
-const Av1: NPC[] = [...Av1Pt2, ...Av1Pt3];
-
 export type Group = {
   nome: string;
   npcs: NPC[];
@@ -793,11 +791,11 @@ type Aventura = {
 export const Aventuras: Aventura[] = [
   {
     label: "Forja de Heróis",
-    npcs: [...Av1],
+    npcs: [...TrabalhoDuro, ...TrupeZelin],
     groups: [
       {
         nome: "Trupe do Zelin",
-        npcs: [...Av1Pt3],
+        npcs: [...TrupeZelin],
       },
     ],
   },
