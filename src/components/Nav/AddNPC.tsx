@@ -17,12 +17,12 @@ import { NavModal } from "./NavModal";
 export function AddNpc() {
   const { npcsShown, addNPC } = useContext(NPCsContext);
 
+  const [selectedAventura, setSelectedAventura] = useState(0);
   const [selectedNpc, setSelectedNpc] = useState<string>();
   const [selectedGroup, setSelectedGroup] = useState<string>();
   const [tabs, setTabs] = useState(0);
-  const [groupsList, setGroupsList] = useState<Group[]>([]);
-  const [npcsList, setNpcsList] = useState<NPC[]>([]);
-  const [selectedAventura, setSelectedAventura] = useState(0);
+  const [groupsList, setGroupsList] = useState<Group[]>(Aventuras[0].groups);
+  const [npcsList, setNpcsList] = useState<NPC[]>(Aventuras[0].npcs);
 
   const addNpcConst = () => {
     const npc: NPCShown = {
