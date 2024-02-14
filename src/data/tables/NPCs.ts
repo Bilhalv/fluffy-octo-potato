@@ -777,6 +777,155 @@ const TrupeZelin: NPC[] = [
   },
 ];
 
+const Mineradores: NPC[] = [
+  {
+    nome: "Anão Capanga",
+    categoria: "Humanoide",
+    tamanho: "Médio",
+    tipo: "Anão",
+    pv: 13,
+    defesa: 17,
+    iniciativa: 1,
+    percepcao: 5,
+    fortitude: 7,
+    reflexos: 3,
+    vontade: 0,
+    resistencias: "Nenhuma",
+    deslocamento: 6,
+    ataques: [
+      {
+        nome: "Machado de batalha",
+        acerto: 10,
+        dano: [
+          {
+            dados: 1,
+            lados: 8,
+            bonus: 6,
+          },
+        ],
+        crit: "20x3",
+      },
+    ],
+    nd: 1 / 2,
+    pericias: [],
+    tesouro: "Nenhum.",
+    img: "https://i.imgur.com/2UNiJ6w.png",
+    atributos: [
+      {
+        nome: "Força",
+        valor: 2,
+      },
+      {
+        nome: "Destreza",
+        valor: -1,
+      },
+      {
+        nome: "Constituição",
+        valor: 3,
+      },
+      {
+        nome: "Inteligência",
+        valor: 0,
+      },
+      {
+        nome: "Sabedoria",
+        valor: 1,
+      },
+      {
+        nome: "Carisma",
+        valor: -1,
+      },
+    ],
+  },
+];
+
+const StrokaECapangas: NPC[] = [
+  {
+    nome: "Stroka",
+    categoria: "Humanoide",
+    tamanho: "Médio",
+    tipo: "Anã",
+    pv: 105,
+    defesa: 21,
+    iniciativa: 9,
+    percepcao: 4,
+    fortitude: 16,
+    reflexos: 10,
+    vontade: 4,
+    resistencias: "Nenhuma",
+    deslocamento: 6,
+    poderes: [
+      {
+        nome: "Bloqueio com escudo",
+        desc: "Uma vez por rodada, quando sofre dano, Stroka recebe redução de dano 5 contra este dano.",
+        acao: "Reação",
+      },
+      {
+        nome: "Contra-golpe",
+        desc: "Uma vez por rodada, Stroka pode fazer um ataque de escudo contra um inimigo que errou um ataque corpo a corpo contra ela.",
+        acao: "Reação",
+      },
+    ],
+    ataques: [
+      {
+        nome: "Martelo de guerra",
+        acerto: 14,
+        dano: [
+          {
+            dados: 1,
+            lados: 8,
+            bonus: 6,
+          },
+        ],
+        crit: "20x3",
+      },
+      {
+        nome: "Escudo pesado",
+        acerto: 14,
+        dano: [
+          {
+            dados: 1,
+            lados: 6,
+            bonus: 4,
+          },
+        ],
+        crit: "20x2",
+      },
+    ],
+    nd: 3,
+    pericias: [],
+    tesouro: "Escudo pesado reforçado, martelo de guerra cruel, meia armadura.",
+    img: "https://i.imgur.com/hbebsWR.png",
+    atributos: [
+      {
+        nome: "Força",
+        valor: 3,
+      },
+      {
+        nome: "Destreza",
+        valor: 0,
+      },
+      {
+        nome: "Constituição",
+        valor: 4,
+      },
+      {
+        nome: "Inteligência",
+        valor: 1,
+      },
+      {
+        nome: "Sabedoria",
+        valor: 2,
+      },
+      {
+        nome: "Carisma",
+        valor: 0,
+      },
+    ],
+  },
+  ...Array(3).fill(Mineradores[0]),
+];
+
 export type Group = {
   nome: string;
   npcs: NPC[];
