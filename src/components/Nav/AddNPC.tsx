@@ -54,7 +54,7 @@ export function AddNpc() {
             setTabs(value);
           }}
         >
-          <Tab label="NPC" />
+          <Tab label="NPCs" />
           <Tab label="Grupos" />
         </Tabs>
         {tabs === 0 ? (
@@ -79,9 +79,7 @@ export function AddNpc() {
 
               <button
                 onClick={addNpcConst}
-                className="bg-red-500 p-1 border-2 rounded-full hover:scale-110 hover:bg-transparent text-white border-white transition-all w-fit h-fit m-auto
-                hover:text-red-500 hover:border-red-500
-                "
+                className="bg-red-500 p-1 border-2 rounded-full hover:scale-110 hover:bg-transparent text-white border-white transition-all w-fit h-fit m-auto hover:text-red-500 hover:border-red-500"
               >
                 <Add />
               </button>
@@ -99,21 +97,30 @@ export function AddNpc() {
           </FormControl>
         ) : (
           <FormControl fullWidth>
-            <InputLabel color="secondary">Group</InputLabel>
-            <Select
-              label="Group"
-              color="secondary"
-              value={selectedGroup}
-              onChange={(e) => {
-                setSelectedGroup(e.target.value as string);
-              }}
-            >
-              {Groups.map((item, index) => (
-                <MenuItem key={index} value={item.nome}>
-                  {item.nome}
-                </MenuItem>
-              ))}
-            </Select>
+            <div className="flex">
+              <InputLabel color="secondary">Group</InputLabel>
+              <Select
+                className="w-full"
+                label="Group"
+                color="secondary"
+                value={selectedGroup}
+                onChange={(e) => {
+                  setSelectedGroup(e.target.value as string);
+                }}
+              >
+                {Groups.map((item, index) => (
+                  <MenuItem key={index} value={item.nome}>
+                    {item.nome}
+                  </MenuItem>
+                ))}
+              </Select>
+              <button
+                onClick={addNpcGroupConst}
+                className="bg-red-500 p-1 border-2 rounded-full hover:scale-110 hover:bg-transparent text-white border-white transition-all w-fit h-fit m-auto hover:text-red-500 hover:border-red-500"
+              >
+                <Add />
+              </button>
+            </div>
             {selectedGroup && (
               <div className="flex justify-evenly flex-wrap gap-2 mt-2 text-white">
                 {Groups.find((item) => item.nome === selectedGroup)?.npcs.map(
@@ -123,12 +130,6 @@ export function AddNpc() {
                 )}
               </div>
             )}
-            <button
-              onClick={addNpcGroupConst}
-              className="bg-green-600 p-2 rounded-full hover:scale-110 hover:bg-green-400 transition-all w-fit mx-auto mt-2"
-            >
-              <AddCircle />
-            </button>
           </FormControl>
         )}
       </NavModal>
