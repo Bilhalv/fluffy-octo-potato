@@ -60,8 +60,11 @@ export function AddNpc() {
           label={`Aventura`}
           className="w-full"
         >
-          <MenuItem value={0}>Forja de Heróis</MenuItem>
-          <MenuItem value={1}>O Segredo das Minas</MenuItem>
+          {Aventuras.map((item, index) => (
+            <MenuItem key={index} value={index}>
+              {item.label}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       <Tabs

@@ -785,12 +785,14 @@ export type Group = {
 };
 
 type Aventura = {
+  label: string;
   npcs: NPC[];
   groups: Group[];
 };
 
 export const Aventuras: Aventura[] = [
   {
+    label: "Forja de Heróis",
     npcs: [...Av1],
     groups: [
       {
@@ -800,6 +802,7 @@ export const Aventuras: Aventura[] = [
     ],
   },
   {
+    label: "O Segredo das Minas",
     npcs: [],
     groups: [],
   },
