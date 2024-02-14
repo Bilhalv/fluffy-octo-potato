@@ -950,7 +950,7 @@ export const Aventuras: Aventura[] = [
   },
   {
     label: "O Segredo das Minas",
-    npcs: [],
+    npcs: [...Mineradores, StrokaECapangas[0]],
     groups: [
       {
         nome: "Stroka e Capangas",
