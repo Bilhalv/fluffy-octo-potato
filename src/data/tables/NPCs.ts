@@ -199,11 +199,11 @@ const Av1Pt2: NPC[] = [
     img: "https://media-waterdeep.cursecdn.com/avatars/thumbnails/6/342/420/618/636272732186039215.png",
     pericias: [],
     poderes: [
-     {
-      nome: "Bando",
-      desc: "A turba é formada por um grupo de zumbis. Se um ataque da turba exceder a Defesa do inimigo por 10 ou mais, ele causa o dobro do dano. Se um ataque da turba errar, ele ainda assim causa metade do dano. A turba é imune a manobras de combate e efeitos que afetam apenas uma criatura e não causam dano, mas sofre 50% a mais de dano de efeitos de área, como Bola de Fogo. Um personagem com o poder Trespassar que acerte a turba pode usá-lo para fazer um ataque adicional contra ela (mas apenas uma vez por turno).",
-      acao: "Livre",
-     },
+      {
+        nome: "Bando",
+        desc: "A turba é formada por um grupo de zumbis. Se um ataque da turba exceder a Defesa do inimigo por 10 ou mais, ele causa o dobro do dano. Se um ataque da turba errar, ele ainda assim causa metade do dano. A turba é imune a manobras de combate e efeitos que afetam apenas uma criatura e não causam dano, mas sofre 50% a mais de dano de efeitos de área, como Bola de Fogo. Um personagem com o poder Trespassar que acerte a turba pode usá-lo para fazer um ataque adicional contra ela (mas apenas uma vez por turno).",
+        acao: "Livre",
+      },
       {
         nome: "Fraqueza Zumbi",
         desc: "A turba zumbi sofre o dobro de dano de acertos críticos ou de ataques feitos contra seus cérebros (Defesa 21).",
@@ -211,7 +211,7 @@ const Av1Pt2: NPC[] = [
       },
     ],
   },
-]
+];
 
 const Av1Pt3: NPC[] = [
   {
@@ -777,21 +777,30 @@ const Av1Pt3: NPC[] = [
   },
 ];
 
-const Av1: NPC[] = [
-  ...Av1Pt2,
-  ...Av1Pt3,
-];
+const Av1: NPC[] = [...Av1Pt2, ...Av1Pt3];
 
-export const NPCs: NPC[] = [...Av1];
-
-type Group = {
+export type Group = {
   nome: string;
   npcs: NPC[];
-}
+};
 
-export const Groups: Group[] = [
+type Aventura = {
+  npcs: NPC[];
+  groups: Group[];
+};
+
+export const Aventuras: Aventura[] = [
   {
-    nome: "Trupe do Zelin",
-    npcs: [...Av1Pt3],
-  }
-]
+    npcs: [...Av1],
+    groups: [
+      {
+        nome: "Trupe do Zelin",
+        npcs: [...Av1Pt3],
+      },
+    ],
+  },
+  {
+    npcs: [],
+    groups: [],
+  },
+];
