@@ -197,7 +197,7 @@ export const Personagens: Personagem[] = [
     ],
     defesa: 16,
     pv: 30,
-    pm: 20,
+    pm: 21,
     movimento: 9,
     nivel: 3,
     poderes: [
