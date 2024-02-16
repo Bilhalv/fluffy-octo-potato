@@ -24,6 +24,7 @@ export default function PersonagemBlock(props: Props) {
             bgcolor: "rgba(255, 255, 255, 0.6)",
             borderRadius: "50px",
             boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.15)",
+            backdropFilter: "blur(3px)",
           }}
         >
           <AccordionSummary>

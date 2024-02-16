@@ -79,7 +79,7 @@ const Home = () => {
       >
         <Nav />
         <body className="bg-bg-t20 bg-fixed bg-center p-8 font-tormenta flex flex-col gap-10">
-          <div className="bg-white p-4 bg-opacity-25 rounded-xl flex justify-center flex-wrap gap-4">
+          <div className="bg-white p-4 bg-opacity-25 rounded-xl flex justify-center flex-wrap gap-4 backdrop-blur-[3px]">
             {Personagens.map((personagem) => (
               <PersonagemBlock Personagem={personagem} />
             ))}
