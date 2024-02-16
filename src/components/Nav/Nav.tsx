@@ -102,7 +102,7 @@ export default function Nav() {
           <button
             onClick={toggleAside}
             className={
-              "bg-red-600 rounded-full p-2 fixed top-2 left-[-20px] hover:left-0 transition-all opacity-50 hover:opacity-100 " +
+              "bg-red-600 rounded-full p-2 fixed top-2 left-[-20px] hover:left-0 transition-all opacity-50 z-50 hover:opacity-100 " +
               (tempAside ? "animate-fade-in-left" : "animate-fade-out-left")
             }
           >
