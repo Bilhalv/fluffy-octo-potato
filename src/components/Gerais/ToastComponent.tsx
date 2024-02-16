@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface ToastProps {
   title: string;
-  message: string | Element | JSX.Element;
+  message: ReactNode;
   duration?: number | false;
 }
 
@@ -12,7 +12,7 @@ export function showToast({ title, message, duration = 3000 }: ToastProps) {
   toast(
     <>
       <h1 className="text-center font-tormenta">{title}</h1>
-      <p className="text-justify">{message.toString()}</p>
+      <div className="text-justify text-xs">{message}</div>
     </>,
     {
       position: "top-right",
@@ -28,7 +28,6 @@ export function showToast({ title, message, duration = 3000 }: ToastProps) {
         backgroundColor: "rgba(0, 0, 0, 0.4)",
         textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
         backdropFilter: "blur(5px)",
-        fontSize: "15px",
       },
     }
   );
