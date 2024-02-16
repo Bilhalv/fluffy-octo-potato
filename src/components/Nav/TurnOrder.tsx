@@ -10,8 +10,9 @@ import React from "react";
 import FlipMove from "react-flip-move";
 import { Personagens } from "../../data/tables/Personagens";
 import { NavModal } from "./NavModal";
+import { ToastTurnOrder } from "./ToastTurnOrder";
 
-type turn = {
+export type turn = {
   nome: string;
   iniciativa: number;
   desempate: number;
@@ -22,6 +23,16 @@ interface BlockProps {
   changeTurnOrder: (index: number, value: number) => void;
   active: string | undefined;
 }
+
+interface contextToastProps {
+  active: string;
+  move: (side: "left" | "right") => void;
+}
+
+export const TurnOrderContext = React.createContext<contextToastProps>({
+  active: "",
+  move: () => {},
+});
 
 function TurnsBlock({ turnOrder, changeTurnOrder, active }: BlockProps) {
   return (
@@ -81,10 +92,12 @@ export function TurnOrder() {
   if (localStorage.getItem("turnOrder") === null) {
     resetTurnOrder();
   }
+
   const [turnOrder, setTurnOrder] = React.useState<turn[]>(
     JSON.parse(localStorage.getItem("turnOrder") || "[]")
   );
-  const [active, setActive] = React.useState<string>();
+
+  const [active, setActive] = React.useState<string>(turnOrder[0].nome);
 
   function changeTurnOrder(index: number, value: number) {
     let newTurnOrder = [...turnOrder];
@@ -112,6 +125,17 @@ export function TurnOrder() {
     setTurnOrder(newTurnOrder);
     localStorage.setItem("turnOrder", JSON.stringify(newTurnOrder));
   }
+
+  const move = (side: "left" | "right") => {
+    let index = turnOrder.findIndex((turn) => turn.nome === active);
+    let pos = side === "left" ? index - 1 : index + 1;
+    let turn =
+      turnOrder[
+        pos >= turnOrder.length ? 0 : pos < 0 ? turnOrder.length - 1 : pos
+      ];
+    setActive(turn.nome);
+  };
+
   return (
     <>
       <NavModal icon={<AccessTime />} tooltip="Turnos">
@@ -168,46 +192,25 @@ export function TurnOrder() {
         ) : (
           <p className="text-center">Nenhum jogador na ordem de turno</p>
         )}
-        <div className="flex justify-evenly">
-          <IconButton
-            onClick={() => {
-              let newTurnOrder = [...turnOrder];
-              let index = newTurnOrder.findIndex(
-                (turn) => turn.nome === active
-              );
-              if (index === -1) {
-                setActive(newTurnOrder[0].nome);
-              } else {
-                if (index === 0) {
-                  setActive(newTurnOrder[newTurnOrder.length - 1].nome);
-                } else {
-                  setActive(newTurnOrder[index - 1].nome);
-                }
-              }
-            }}
-          >
-            <ArrowBackIos />
-          </IconButton>
-          <IconButton
-            onClick={() => {
-              let newTurnOrder = [...turnOrder];
-              let index = newTurnOrder.findIndex(
-                (turn) => turn.nome === active
-              );
-              if (index === -1) {
-                setActive(newTurnOrder[0].nome);
-              } else {
-                if (index === newTurnOrder.length - 1) {
-                  setActive(newTurnOrder[0].nome);
-                } else {
-                  setActive(newTurnOrder[index + 1].nome);
-                }
-              }
-            }}
-          >
-            <ArrowForwardIos />
-          </IconButton>
-        </div>
+        <TurnOrderContext.Provider value={{ active, move }}>
+          <div className="flex justify-evenly">
+            <IconButton
+              onClick={() => {
+                move("left");
+              }}
+            >
+              <ArrowBackIos />
+            </IconButton>
+            <ToastTurnOrder />
+            <IconButton
+              onClick={() => {
+                move("right");
+              }}
+            >
+              <ArrowForwardIos />
+            </IconButton>
+          </div>
+        </TurnOrderContext.Provider>
       </NavModal>
     </>
   );
