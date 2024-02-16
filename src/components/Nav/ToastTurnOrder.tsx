@@ -42,7 +42,7 @@ export function ToastTurnOrder() {
           draggable: true,
           icon: false,
           style: {
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            backgroundColor: "rgba(255, 255, 255, 0.4)",
             textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
             backdropFilter: "blur(5px)",
           },

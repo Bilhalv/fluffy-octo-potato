@@ -50,22 +50,15 @@ const Home = () => {
   }
 
   function addNPC(npc: NPCShown | NPCShown[]) {
-    if (Array.isArray(npc)) {
-      setNpcsShown([...npcsShown, ...npc]);
-      showToast({
-        title: "NPCs Adicionados",
-        message: `${npc.length} NPCs foram adicionados à lista de NPCs`,
-        duration: 3000,
-      });
-      return;
-    } else {
-      setNpcsShown([...npcsShown, npc]);
-      showToast({
-        title: "NPC Adicionado",
-        message: `${npc.nome} foi adicionado à lista de NPCs`,
-        duration: 3000,
-      });
-    }
+    const addedNPCs = Array.isArray(npc) ? npc : [npc];
+    setNpcsShown([...npcsShown, ...addedNPCs]);
+    showToast({
+      title: Array.isArray(npc) ? "NPCs Adicionados" : "NPC Adicionado",
+      message: Array.isArray(npc)
+        ? `${npc.length} NPCs foram adicionados à lista de NPCs`
+        : `${npc.nome} foi adicionado à lista de NPCs`,
+      duration: 3000,
+    });
   }
 
   useEffect(() => {
