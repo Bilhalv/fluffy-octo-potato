@@ -99,23 +99,23 @@ export const Personagens: Personagem[] = [
       },
       {
         nome: "Constituição",
-        valor: 1,
+        valor: 2,
       },
       {
         nome: "Inteligência",
-        valor: 2,
+        valor: 3,//ganha 1 pericia
       },
       {
         nome: "Sabedoria",
-        valor: 1,
+        valor: -1,
       },
       {
         nome: "Carisma",
-        valor: 2,
+        valor: 3,
       },
     ],
     defesa: 16,
-    pv: 21,
+    pv: 24,
     pm: 12,
     movimento: 9,
     nivel: 3,
@@ -321,19 +321,19 @@ export const Personagens: Personagem[] = [
     atributos: [
       {
         nome: "Força",
-        valor: 2,
-      },
-      {
-        nome: "Destreza",
-        valor: 0,
-      },
-      {
-        nome: "Constituição",
         valor: 3,
       },
       {
-        nome: "Inteligência",
+        nome: "Destreza",
+        valor: -1,
+      },
+      {
+        nome: "Constituição",
         valor: 4,
+      },
+      {
+        nome: "Inteligência",
+        valor: 5,//+1 pericia
       },
       {
         nome: "Sabedoria",
@@ -341,11 +341,11 @@ export const Personagens: Personagem[] = [
       },
       {
         nome: "Carisma",
-        valor: -2,
+        valor: -3,
       },
     ],
     defesa: 16,
-    pv: 27,
+    pv: 30,
     pm: 12,
     movimento: 9,
     nivel: 3,
