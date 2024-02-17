@@ -10,11 +10,11 @@ export const Personagens: Personagem[] = [
     atributos: [
       {
         nome: "Força",
-        valor: 0,
+        valor: -1,
       },
       {
         nome: "Destreza",
-        valor: 3,
+        valor: 5,
       },
       {
         nome: "Constituição",
@@ -26,14 +26,14 @@ export const Personagens: Personagem[] = [
       },
       {
         nome: "Sabedoria",
-        valor: 5,
+        valor: 1,
       },
       {
         nome: "Carisma",
-        valor: 2,
+        valor: 1,
       },
     ],
-    defesa: 17,
+    defesa: 20,
     pv: 21,
     pm: 12,
     movimento: 9,
@@ -255,14 +255,14 @@ export const Personagens: Personagem[] = [
       },
       {
         nome: "Sabedoria",
-        valor: 1,
+        valor: -2,
       },
       {
         nome: "Carisma",
         valor: 6,
       },
     ],
-    defesa: 14,
+    defesa: 11,
     pv: 12,
     pm: 24,
     movimento: 9,
@@ -333,7 +333,7 @@ export const Personagens: Personagem[] = [
       },
       {
         nome: "Inteligência",
-        valor: 5,//+1 pericia
+        valor: 5,
       },
       {
         nome: "Sabedoria",
