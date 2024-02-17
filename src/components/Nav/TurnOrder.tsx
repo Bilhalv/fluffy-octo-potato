@@ -10,7 +10,8 @@ import React from "react";
 import FlipMove from "react-flip-move";
 import { Personagens } from "../../data/tables/Personagens";
 import { NavModal } from "./NavModal";
-import { ToastTurnOrder } from "./ToastTurnOrder";
+import { TurnOrderContext } from "../../pages/Home";
+import { Pin } from "lucide-react";
 
 export type turn = {
   nome: string;
@@ -23,16 +24,6 @@ interface BlockProps {
   changeTurnOrder: (index: number, value: number) => void;
   active: string | undefined;
 }
-
-interface contextToastProps {
-  active: string;
-  move: (side: "left" | "right") => void;
-}
-
-export const TurnOrderContext = React.createContext<contextToastProps>({
-  active: "",
-  move: () => {},
-});
 
 function TurnsBlock({ turnOrder, changeTurnOrder, active }: BlockProps) {
   return (
@@ -93,12 +84,6 @@ export function TurnOrder() {
     resetTurnOrder();
   }
 
-  const [turnOrder, setTurnOrder] = React.useState<turn[]>(
-    JSON.parse(localStorage.getItem("turnOrder") || "[]")
-  );
-
-  const [active, setActive] = React.useState<string>(turnOrder[0].nome);
-
   function changeTurnOrder(index: number, value: number) {
     let newTurnOrder = [...turnOrder];
     newTurnOrder[index].iniciativa = value;
@@ -126,15 +111,12 @@ export function TurnOrder() {
     localStorage.setItem("turnOrder", JSON.stringify(newTurnOrder));
   }
 
-  const move = (side: "left" | "right") => {
-    let index = turnOrder.findIndex((turn) => turn.nome === active);
-    let pos = side === "left" ? index - 1 : index + 1;
-    let turn =
-      turnOrder[
-        pos >= turnOrder.length ? 0 : pos < 0 ? turnOrder.length - 1 : pos
-      ];
-    setActive(turn.nome);
-  };
+  const {
+    toastOpen: { orderToast, setOrderToast },
+    move,
+    active: { active, setActive },
+    turnOrder: { turnOrder, setTurnOrder },
+  } = React.useContext(TurnOrderContext);
 
   return (
     <>
@@ -192,25 +174,30 @@ export function TurnOrder() {
         ) : (
           <p className="text-center">Nenhum jogador na ordem de turno</p>
         )}
-        <TurnOrderContext.Provider value={{ active, move }}>
-          <div className="flex justify-evenly">
-            <IconButton
-              onClick={() => {
-                move("left");
-              }}
-            >
-              <ArrowBackIos />
-            </IconButton>
-            <ToastTurnOrder />
-            <IconButton
-              onClick={() => {
-                move("right");
-              }}
-            >
-              <ArrowForwardIos />
-            </IconButton>
-          </div>
-        </TurnOrderContext.Provider>
+        <div className="flex justify-evenly">
+          <IconButton
+            onClick={() => {
+              move("left");
+            }}
+          >
+            <ArrowBackIos />
+          </IconButton>
+          {/* <ToastTurnOrder /> */}
+          <button
+            onClick={() => {
+              setOrderToast(!orderToast);
+            }}
+          >
+            <Pin />
+          </button>
+          <IconButton
+            onClick={() => {
+              move("right");
+            }}
+          >
+            <ArrowForwardIos />
+          </IconButton>
+        </div>
       </NavModal>
     </>
   );

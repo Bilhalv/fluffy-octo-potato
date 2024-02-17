@@ -6,7 +6,39 @@ import Nav from "../../components/Nav/Nav";
 import { NPCShown } from "../../data/constructors/NPC";
 import { Personagens } from "../../data/tables/Personagens";
 import { showToast } from "../../components/Gerais/ToastComponent";
-import { ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+import { PinOff } from "lucide-react";
+
+export type turn = {
+  nome: string;
+  iniciativa: number;
+  desempate: number;
+};
+
+interface BlockProps {
+  turnOrder: {
+    setTurnOrder: React.Dispatch<React.SetStateAction<turn[]>>;
+    turnOrder: turn[];
+  };
+  active: {
+    setActive: React.Dispatch<React.SetStateAction<string>>;
+    active: string;
+  };
+  move: (side: "left" | "right") => void;
+  toastOpen: {
+    orderToast: boolean;
+    setOrderToast: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+}
+
+export const TurnOrderContext = createContext<BlockProps>({
+  turnOrder: { setTurnOrder: () => {}, turnOrder: [] },
+  active: { setActive: () => {}, active: "" },
+  move: () => {},
+  toastOpen: { orderToast: false, setOrderToast: () => {} },
+});
 
 interface NPCsContextProps {
   npcsShown: NPCShown[];
@@ -65,38 +97,127 @@ const Home = () => {
     localStorage.setItem("npcs", JSON.stringify(npcsShown));
   }, [npcsShown]);
 
+  //turn Order toast
+  const [turnOrder, setTurnOrder] = useState<turn[]>(
+    JSON.parse(localStorage.getItem("turnOrder") || "[]")
+  );
+  const [orderToast, setOrderToast] = useState<boolean>(false);
+  const [active, setActive] = useState<string>(turnOrder[0]?.nome || "");
+  const move = (pos: "left" | "right") => {
+    let index = turnOrder.findIndex((turn) => turn.nome === active);
+    let newIndex = pos === "left" ? index - 1 : index + 1;
+    let turn =
+      turnOrder[
+        newIndex >= turnOrder.length
+          ? 0
+          : newIndex < 0
+          ? turnOrder.length - 1
+          : newIndex
+      ];
+    setActive(turn.nome);
+    toast.dismiss();
+  };
+  useEffect(() => {
+    if (orderToast) {
+      toast.info(
+        <div>
+          <div className="flex flex-col gap-3 items-center">
+            <h1>Turno</h1>
+            <div className="flex justify-evenly w-full">
+              <IconButton
+                onClick={() => {
+                  move("left");
+                  toast.dismiss();
+                }}
+              >
+                <ArrowBackIos />
+              </IconButton>
+              <p>{active}</p>
+              <IconButton
+                onClick={() => {
+                  move("right");
+                  toast.dismiss();
+                }}
+              >
+                <ArrowForwardIos />
+              </IconButton>
+            </div>
+          </div>
+        </div>,
+        {
+          position: "top-right",
+          autoClose: false,
+          draggable: true,
+          icon: false,
+          style: {
+            backgroundColor: "rgba(255, 255, 255, 0.4)",
+            textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
+            backdropFilter: "blur(5px)",
+          },
+          theme: "dark",
+          transition: Bounce,
+          closeButton: ({ closeToast }) => (
+            <button onClick={closeToast}>
+              <PinOff />
+            </button>
+          ),
+        }
+      );
+    } else {
+      toast.dismiss();
+    }
+  }, [active, move, orderToast]);
+
   return (
     <>
       <NPCsContext.Provider
         value={{ npcsShown, setNpcsShown, deleteNPC, moveNPC, addNPC }}
       >
-        <Nav />
-        <body className="bg-bg-t20 bg-fixed bg-center p-8 font-tormenta flex flex-col gap-10">
-          <div className="bg-white p-4 bg-opacity-25 rounded-xl flex justify-center flex-wrap gap-4 backdrop-blur-[3px]">
-            {Personagens.map((personagem) => (
-              <PersonagemBlock Personagem={personagem} />
-            ))}
-          </div>
-          {npcsShown.length > 0 && (
-            <div className="bg-white p-4 bg-opacity-25 rounded-xl flex flex-col gap-4 relative">
-              <FlipMove typeName={null}>
-                <div className="flex justify-evenly opacity-0">
-                  {npcsShown.map((npc: NPCShown) => (
-                    <p>
-                      {npc.nome} - {npc.id}
-                    </p>
-                  ))}
-                </div>
-                <div className="flex  justify-center flex-wrap gap-4 relative">
-                  {npcsShown.map((npc: NPCShown) => (
-                    <NPCBlock NPC={npc} key={npc.id} />
-                  ))}
-                </div>
-              </FlipMove>
+        <TurnOrderContext.Provider
+          value={{
+            move,
+            toastOpen: {
+              orderToast,
+              setOrderToast,
+            },
+            active: {
+              active,
+              setActive,
+            },
+            turnOrder: {
+              turnOrder,
+              setTurnOrder,
+            },
+          }}
+        >
+          <Nav />
+          <body className="bg-bg-t20 bg-fixed bg-center p-8 font-tormenta flex flex-col gap-10">
+            <div className="bg-white p-4 bg-opacity-25 rounded-xl flex justify-center flex-wrap gap-4 backdrop-blur-[3px]">
+              {Personagens.map((personagem) => (
+                <PersonagemBlock Personagem={personagem} />
+              ))}
             </div>
-          )}
-          <ToastContainer stacked />
-        </body>
+            {npcsShown.length > 0 && (
+              <div className="bg-white p-4 bg-opacity-25 rounded-xl flex flex-col gap-4 relative">
+                <FlipMove typeName={null}>
+                  <div className="flex justify-evenly opacity-0">
+                    {npcsShown.map((npc: NPCShown) => (
+                      <p>
+                        {npc.nome} - {npc.id}
+                      </p>
+                    ))}
+                  </div>
+                  <div className="flex  justify-center flex-wrap gap-4 relative">
+                    {npcsShown.map((npc: NPCShown) => (
+                      <NPCBlock NPC={npc} key={npc.id} />
+                    ))}
+                  </div>
+                </FlipMove>
+              </div>
+            )}
+            <ToastContainer stacked />
+          </body>
+        </TurnOrderContext.Provider>
       </NPCsContext.Provider>
     </>
   );
