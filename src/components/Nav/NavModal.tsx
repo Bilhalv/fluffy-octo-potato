@@ -15,14 +15,6 @@ export function NavModal({ icon, children, tooltip }: Props) {
   }
   return (
     <>
-      <Tooltip
-        id="my-tooltip"
-        style={{
-          backgroundColor: "rgba(255, 0, 0, 0.3)",
-          textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
-        }}
-      />
-
       <button
         onClick={toggleModal}
         className="p-2 bg-red-600 rounded-full hover:scale-110 hover:bg-red-400 transition-all"

@@ -20,6 +20,7 @@ import {
   CondicoesRegras,
   ManobrasRegras,
 } from "../../data/tables/Regras";
+import { Biboteca } from "./Biboteca";
 
 interface fixedContextProps {
   regrasFixadas: regras[];
@@ -90,10 +91,11 @@ export default function Nav() {
             >
               <Eraser />
             </button>
+            <Biboteca />
             <Tooltip
               id="my-tooltip"
               style={{
-                backgroundColor: "rgba(255, 0, 0, 0.3)",
+                backgroundColor: "rgba(255, 0, 0, 0.8)",
                 textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
               }}
             />
