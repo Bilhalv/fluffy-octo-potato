@@ -4,10 +4,11 @@ import React from "react";
 import { poder, arma } from "../../data/constructors/Personagem";
 import { magia } from "../../data/functions/findMagia";
 import { PopoverComponent } from "./Popovers";
+import { ataque } from "../../data/constructors/NPC";
 
 interface Props {
     titulo: string;
-    children: magia[] | poder[] | arma[];
+    children: magia[] | poder[] | arma[] | ataque[];
 }
 
 export default function AccordionConstructor(

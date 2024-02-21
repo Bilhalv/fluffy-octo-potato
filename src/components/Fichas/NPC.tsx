@@ -179,6 +179,12 @@ export default function NPCBlock(props: Props) {
                 {props.NPC.tesouro}
               </p>
             </div>
+            {props.NPC.ataques.length > 0 && (
+              <AccordionConstructor
+                titulo={"Ataques"}
+                children={[...props.NPC.ataques]}
+              />
+            )}
             {props.NPC.poderes && (
               <AccordionConstructor
                 titulo={"Poderes"}

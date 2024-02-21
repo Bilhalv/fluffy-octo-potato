@@ -2,6 +2,7 @@ import { Popover } from "@mui/material";
 import React, { useState } from "react";
 import { arma, poder } from "../../data/constructors/Personagem";
 import { magia } from "../../data/functions/findMagia";
+import { ataque } from "../../data/constructors/NPC";
 
 interface defaultProps {
   titulo: string;
@@ -45,7 +46,11 @@ export function DefaultPopover({ titulo, content }: defaultProps) {
   );
 }
 
-export function PopoverComponent({ data }: { data: arma | poder | magia }) {
+export function PopoverComponent({
+  data,
+}: {
+  data: arma | poder | magia | ataque;
+}) {
   let content: React.JSX.Element;
   let titulo: string = data.nome;
 
@@ -79,27 +84,47 @@ export function PopoverComponent({ data }: { data: arma | poder | magia }) {
   };
 
   switch (true) {
-    case "crit" in data:
+    case "alcance" in data && "dano" in data:
       content = (
         //arma
         <div className="p-4">
           <h1 className="text-center font-bold text-red-600">{data.nome}</h1>
           <div className="flex justify-between">
             <ul>
-              {[
-                "Tipo",
-                "Dano",
-                "Acerto",
-                "Dano",
-                "Crit",
-                "Alcance",
-              ].map((x, index) => (
+              {["Tipo", "Dano", "Acerto", "Dano", "Crit", "Alcance"].map(
+                (x, index) => (
+                  <li key={index}>
+                    <b className="text-red-600">{x}</b> {data[x.toLowerCase()]}
+                  </li>
+                )
+              )}
+            </ul>
+            <i>&nbsp;&nbsp;&nbsp;{data.desc}</i>
+          </div>
+        </div>
+      );
+      break;
+    case "crit" in data:
+      content = (
+        //ataque
+        <div className="p-4">
+          <h1 className="text-center font-bold text-red-600">{data.nome}</h1>
+          <div className="flex justify-between">
+            <ul>
+              {["Acerto", "Crit"].map((x, index) => (
                 <li key={index}>
                   <b className="text-red-600">{x}</b> {data[x.toLowerCase()]}
                 </li>
               ))}
+              <li>
+                <b className="text-red-600">Dano</b>
+                {data.dano.map((dano) => (
+                  <>
+                    {dano.dados}d{dano.lados}+{dano.bonus}
+                  </>
+                ))}
+              </li>
             </ul>
-            <i>&nbsp;&nbsp;&nbsp;{data.desc}</i>
           </div>
         </div>
       );
