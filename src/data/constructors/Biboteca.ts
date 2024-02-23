@@ -14,7 +14,10 @@ export type Cena = {
 export type Partes = {
     titulo: string,
     intro: string,
-    aventura: number,
-    parte: number,
     cenas: Cena[],
+}
+
+export type Aventura = {
+    titulo: string,
+    partes: Partes[],
 }

@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.15.6",
+    "@mui/lab": "^5.0.0-alpha.165",
     "@mui/material": "^5.11.16",
     "@react-pdf/renderer": "^3.3.8",
     "lucide-react": "^0.330.0",
