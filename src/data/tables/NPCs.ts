@@ -777,7 +777,7 @@ const TrupeZelin: NPC[] = [
   },
 ];
 
-const Mineradores: NPC[] = [
+export const MercenariosDaZhura: NPC[] = [
   {
     nome: "Anão Capanga",
     categoria: "Humanoide",
@@ -837,9 +837,81 @@ const Mineradores: NPC[] = [
       },
     ],
   },
+  {
+    nome: "Anão Veterano",
+    categoria: "Humanoide",
+    tamanho: "Médio",
+    tipo: "Anão",
+    pv: 33,
+    defesa: 20,
+    iniciativa: 2,
+    percepcao: 8,
+    fortitude: 13,
+    reflexos: 2,
+    vontade: 7,
+    resistencias: "Nenhuma",
+    deslocamento: 6,
+    ataques: [
+      {
+        nome: "Machado Anão",
+        acerto: 12,
+        dano: [
+          {
+            dados: 1,
+            lados: 10,
+            bonus: 10,
+          },
+        ],
+        crit: "20x3",
+      },
+      {
+        nome: "Besta Pesada",
+        acerto: 11,
+        dano: [
+          {
+            dados: 1,
+            lados: 12,
+            bonus: 0,
+          },
+        ],
+        crit: "19x2",
+      },
+    ],
+    nd: 2,
+    pericias: [],
+    tesouro:
+      "Besta pesada, escudo pesado, machado anão, meia armadura, virotes x10.",
+    img: "https://i.ibb.co/KmJ86Nw/An-o-Veterano.png",
+    atributos: [
+      {
+        nome: "Força",
+        valor: 3,
+      },
+      {
+        nome: "Destreza",
+        valor: -1,
+      },
+      {
+        nome: "Constituição",
+        valor: 4,
+      },
+      {
+        nome: "Inteligência",
+        valor: 0,
+      },
+      {
+        nome: "Sabedoria",
+        valor: 2,
+      },
+      {
+        nome: "Carisma",
+        valor: -1,
+      },
+    ],
+  },
 ];
 
-const StrokaECapangas: NPC[] = [
+export const StrokaECapangas: NPC[] = [
   {
     nome: "Stroka",
     categoria: "Humanoide",
@@ -923,7 +995,7 @@ const StrokaECapangas: NPC[] = [
       },
     ],
   },
-  ...Array(3).fill(Mineradores[0]),
+  ...Array(3).fill(MercenariosDaZhura[0]),
 ];
 
 export type Group = {
@@ -950,7 +1022,7 @@ export const Aventuras: Aventura[] = [
   },
   {
     label: "O Segredo das Minas",
-    npcs: [...Mineradores, StrokaECapangas[0]],
+    npcs: [...MercenariosDaZhura, StrokaECapangas[0]],
     groups: [
       {
         nome: "Stroka e Capangas",

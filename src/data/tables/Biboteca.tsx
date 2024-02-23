@@ -1,8 +1,13 @@
 import { Aventura, Cena, Combate, Partes } from "../constructors/Biboteca";
 import React from "react";
+import { MercenariosDaZhura, StrokaECapangas } from "./NPCs";
 
 function Quote({ children }: React.PropsWithChildren<{}>) {
-  return <p className="italic font-bold">&nbsp;&nbsp;&nbsp;&nbsp;{children}</p>;
+  return (
+    <p className="italic font-bold font-tormenta">
+      &nbsp;&nbsp;&nbsp;&nbsp;{children}
+    </p>
+  );
 }
 function Paragraph({ children }: React.PropsWithChildren<{}>) {
   return <p>&nbsp;&nbsp;&nbsp;&nbsp;{children}</p>;
@@ -10,11 +15,20 @@ function Paragraph({ children }: React.PropsWithChildren<{}>) {
 function Content({ children }: React.PropsWithChildren<{}>) {
   return <div className="flex flex-col gap-2">{children}</div>;
 }
+function CombateComponent({ content }: { content: string }) {
+  return (
+    <p className="font-tormenta">
+      &nbsp;&nbsp;&nbsp;&nbsp;<b className="text-red-600">Criaturas. </b>
+      {content}
+    </p>
+  );
+}
 
 const SegredoDasMinas: Partes[] = [
   {
     titulo: "Introdução",
-    intro: "Aqui começa a aventura de O Segredo das Minas",
+    intro:
+      "A aventura começa quando um mensageiro goblin, a mando de Ezequias, entra em contato com o grupo. Segundo o goblin, o inventor tem um pedidonimportante para os heróis. Quando o grupo aceita a missão, o goblin os leva até a Minérios Maravilhosos, a oficina de Ezequias, no Distrito da Bigorna.",
     cenas: [
       {
         titulo: "O Pedido de Ezequias",
@@ -93,6 +107,113 @@ const SegredoDasMinas: Partes[] = [
             <Paragraph>
               Se os aventureiros mentirem e falarem que não estão indo para as
               minas, Lonien pede desculpas por ter incomodado.
+            </Paragraph>
+          </Content>
+        ),
+      },
+      {
+        titulo: "Emboscada Anã",
+        combate: {
+          titulo: "Stroka e anões capangas x4.",
+          content: [...StrokaECapangas],
+        },
+        content: (
+          <Content>
+            <Paragraph>
+              Os aventureiros seguem em direção às minas. É uma viagem curta
+              pelos campos gelados ao sopé das Uivantes. No meio da viagem, o
+              grupo é emboscado por anões mercenários escondidos em valas ao
+              lado da estrada. O grupo deve fazer um teste de Percepção (CD 15).
+              Personagens que falharem são surpreendidos. Há quatro capangas e a
+              líder, Stroka. Se ela ficar com menos de 15 PV, pede clemência.
+            </Paragraph>
+            <CombateComponent content="Stroka e anões capangas x4." />
+            <Quote>
+              “Ei, não foi nada pessoal! Eu e meus cupinchas fomos contratados
+              pela Guilda dos Mineradores para dar um trato nos amigos de
+              Ezequias. Parece que ele está criando problemas para a Guilda! Mas
+              não vou mais ficar no caminho de vocês, tá bom?”
+            </Quote>
+            <Paragraph>O grupo pode decidir o destino da anã.</Paragraph>
+          </Content>
+        ),
+      },
+      {
+        titulo: "A Entrada",
+        content: (
+          <Content>
+            <Paragraph>
+              A entrada da câmara anã na mina é um salão grande com piso de
+              ladrilhos e colunas nas paredes. Em outros tempos deve ter sido
+              bonito, mas hoje está empoeirado e repleto de rachaduras nos
+              ladrilhos e colunas. No fundo do salão há um corredor reto,
+              estreito e escuro. No final dele, há um elevador velho, mas que
+              ainda funciona. Quando os aventureiros entram e puxam a alavanca,
+              descem para o primeiro andar da câmara, o mais próximo da
+              superfície (na perspectiva anã, seria o quarto, mas usaremos a
+              perspectiva humana no texto).
+            </Paragraph>
+            <Paragraph>
+              O elevador para no primeiro andar. Os aventureiros podem descer
+              para os outros níveis da mina. Porém, um teste de Sabedoria (CD
+              10) revela que isso não é boa ideia; no Reinado, é senso comum que
+              masmorras são mais perigosas no fundo do que na superfície. Se os
+              jogadores insistirem em explorar os andares fora de ordem, não os
+              impeça. De qualquer forma, para abrir o cofre no quarto andar,
+              eles precisarão de peças encontradas em todos os andares.
+            </Paragraph>
+          </Content>
+        ),
+      },
+    ],
+  },
+  {
+    titulo: "Os Mineradores Perdidos",
+    intro:
+      "O primeiro andar está ocupado por um bando mercenário liderado pela anã Zhura.",
+    cenas: [
+      {
+        titulo: "Corredor de Acesso",
+        content: (
+          <Content>
+            <Paragraph>
+              Saindo do elevador, o grupo se vê num corredor. Um teste de
+              Investigação (CD 15) revela indícios de uso recente (pegadas na
+              poeira, tochas oleadas nas paredes...). Os personagens podem ir
+              para a direita (área 2) ou para a esquerda (área 4).
+            </Paragraph>
+          </Content>
+        ),
+      },
+      {
+        titulo: "Vigias Atentos",
+        combate: {
+          titulo: "Anões veteranos x2.",
+          content: [MercenariosDaZhura[1], MercenariosDaZhura[1]],
+        },
+        content: (
+          <Content>
+            <Paragraph>
+              Seguindo pela direita, os personagens passam por uma porta
+              quebrada e chegam a uma sala larga com dois anões veteranos de
+              guarda.
+            </Paragraph>
+            <Paragraph>
+              Os anões estão atentos; para surpreendê-los, os personagens
+              precisam fazer um teste de Furtividade oposto à Percepção dos
+              inimigos (+10). Se falharem, os anões os percebem e atacam. Na
+              segunda rodada do combate, os anões pedem ajuda aos humanos da
+              área 3, que se juntam ao combate na terceira rodada.
+            </Paragraph>
+            <CombateComponent content="Anões veteranos x2." />
+            <Paragraph>
+              Um dos anões possui um papel dobrado com uma mensagem:{" "}
+              <i>
+                Não se esqueçam: a Guilda dos Mineradores paga bem, mas exige
+                muito! Não falhem, ou eles chamarão outros mercenários.
+                Precisamos agir a qualquer sinal de pessoas mandadas pelo tal
+                Ezequias. Não me decepcionem. — Zhura
+              </i>
             </Paragraph>
           </Content>
         ),
