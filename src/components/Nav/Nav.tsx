@@ -21,6 +21,7 @@ import {
   ManobrasRegras,
 } from "../../data/tables/Regras";
 import { Biboteca } from "./Biboteca";
+import { Calendar } from "./Calendar";
 
 interface fixedContextProps {
   regrasFixadas: regras[];
@@ -92,6 +93,7 @@ export default function Nav() {
               <Eraser />
             </button>
             <Biboteca />
+            <Calendar />
             <Tooltip
               id="my-tooltip"
               style={{

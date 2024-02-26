@@ -42,7 +42,7 @@ function SelectBuilder(props: SelectBuilderProps) {
 }
 
 export function Biboteca() {
-  const [modalOpen, setModalOpen] = React.useState<boolean>(true);
+  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
   const [aventura, setAventura] = React.useState<string>(Biblioteca[0].titulo);
   const [parte, setParte] = React.useState<string>(
     Biblioteca[0].partes[0].titulo
