@@ -7,6 +7,7 @@ import { Input } from "@mui/material";
 interface Dia {
   dia: number;
   nimb: boolean;
+  diaDaSemana: number;
 }
 
 interface Mes {
@@ -21,53 +22,113 @@ interface Ano {
 
 function gerarAno(ano: number) {
   const rng = seedrandom(ano.toString());
-  const meses = Array.from({ length: 12 }, (_, i) => {
-    const dias = Array.from({ length: 30 }, (_, j) => ({
-      dia: j + 1,
-      nimb: rng() > 0.5,
-    }));
+  let Nimb = Math.floor(rng() * 12) + 1;
+  const monthsNimb: number[] = [];
+
+  for (let idx = 0; idx < Nimb; idx++) {
+    const x = Math.floor(seedrandom(String(idx + ano))() * 12);
+    monthsNimb.push(x);
+  }
+  const meses: Mes[] = [
+    "Caravana",
+    "Pomo",
+    "Keenvia",
+    "Sirravia",
+    "Vigília",
+    "Prussvia",
+    "Ceifa",
+    "Contenda",
+    "Clausura",
+    "Pharstyth",
+    "Véu",
+    "Pyra",
+  ].map((mes, i) => {
+    let haveNimb: boolean = monthsNimb.includes(i);
+
+    let dayNimb = Math.floor(seedrandom((i + ano).toString())() * 31);
+
+    const dias: {
+      dia: number;
+      nimb: boolean;
+    }[] = [];
+
+    for (let j = 1; j <= 30 + (haveNimb ? 1 : 0); j++) {
+      dias.push({ dia: j, nimb: haveNimb && j === dayNimb });
+    }
+
     return {
-      nome: new Date(ano, i, 1).toLocaleString("pt-BR", { month: "long" }),
+      nome: mes,
       dias,
     };
   });
-  return { ano, meses };
+
+  let diaDaSemana = 0;
+  for (let i = 0; i < meses.length; i++) {
+    for (let j = 0; j < meses[i].dias.length; j++) {
+      meses[i].dias[j].diaDaSemana = diaDaSemana;
+      if (diaDaSemana === 6) {
+        diaDaSemana = 0;
+      } else {
+        diaDaSemana++;
+      }
+    }
+  }
+
+  return {
+    ano,
+    meses,
+  };
 }
 
 export function Calendar() {
-  const [ano, setAno] = React.useState(gerarAno(1420));
+  const [ano, setAno] = React.useState<Ano>(gerarAno(1420));
   return (
     <NavModal icon={<CalendarIcon size={24} />} tooltip="Calendar">
       <h2 className="text-center text-2xl">Calendário</h2>
-      <Input fullWidth type="number" placeholder="Ano" defaultValue={1420} />
-      <div className="flex flex-col overflow-scroll max-h-96">
+      <Input
+        fullWidth
+        type="number"
+        placeholder="Ano"
+        value={ano.ano}
+        onChange={(e) => setAno(gerarAno(parseInt(e.target.value)))}
+      />
+      <div className="flex flex-col overflow-scroll max-h-96 gap-2">
         {ano.meses.map((mes, i) => (
-          <div key={i} className="w-full">
-            <h3 className="text-center">{mes.nome}</h3>
+          <div key={i} className="w-full bg-white/75 rounded-xl p-4">
+            <h3 className="text-center text-xl mb-2">{mes.nome}</h3>
             <table className="w-full">
               <thead>
                 <tr>
-                  <th>Dom</th>
-                  <th>Seg</th>
-                  <th>Ter</th>
-                  <th>Qua</th>
-                  <th>Qui</th>
-                  <th>Sex</th>
-                  <th>Sáb</th>
+                  <th>Leen</th>
+                  <th>Valk</th>
+                  <th>Hedryl</th>
+                  <th>Luna</th>
+                  <th>Astar</th>
+                  <th>Dallia</th>
+                  <th>Haya</th>
                 </tr>
               </thead>
               <tbody>
                 {mes.dias.map((dia, j) => (
                   <>
+                    {dia.diaDaSemana !== 0 &&
+                      j === 0 &&
+                      Array.from({ length: dia.diaDaSemana }).map((_, k) => (
+                        <td key={k}></td>
+                      ))}
                     <td
                       key={j}
                       className={`${
-                        dia.nimb ? "bg-gray-300" : "bg-white"
+                        dia.nimb ||
+                        dia.diaDaSemana === 6 ||
+                        dia.diaDaSemana === 0
+                          ? "bg-red-400"
+                          : ""
                       } text-center`}
                     >
                       {dia.dia}
                     </td>
-                    {dia.dia % 7 === 0 && <tr></tr>}
+                    {dia.diaDaSemana === 6 && <tr></tr>}
                   </>
                 ))}
               </tbody>
