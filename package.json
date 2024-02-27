@@ -15,7 +15,8 @@
     "react-flip-move": "^3.0.5",
     "react-router-dom": "^6.9.0",
     "react-toastify": "^10.0.4",
-    "react-tooltip": "^5.26.2"
+    "react-tooltip": "^5.26.2",
+    "seedrandom": "^3.0.5"
   },
   "scripts": {
     "continue": "vite",
