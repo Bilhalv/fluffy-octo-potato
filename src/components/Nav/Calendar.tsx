@@ -99,7 +99,7 @@ export function Calendar() {
             <h3 className="text-center text-xl mb-2">{mes.nome}</h3>
             <table className="w-full">
               <thead>
-                <tr>
+                <tr className="text-xs">
                   <th>Leen</th>
                   <th>Valk</th>
                   <th>Hedryl</th>
