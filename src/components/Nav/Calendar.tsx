@@ -20,7 +20,23 @@ interface Ano {
   meses: Mes[];
 }
 
-function gerarAno(ano: number) {
+function GerarDiasdaSemana(mes: Mes[]) {
+  let diaDaSemana = 0;
+
+  for (let i = 0; i < mes.length; i++) {
+    for (let j = 0; j < mes[i].dias.length; j++) {
+      mes[i].dias[j].diaDaSemana = diaDaSemana;
+      if (diaDaSemana === 6) {
+        diaDaSemana = 0;
+      } else {
+        diaDaSemana++;
+      }
+    }
+  }
+  return mes;
+}
+
+function GerarMeses(ano: number) {
   const rng = seedrandom(ano.toString());
   let Nimb = Math.floor(rng() * 12) + 1;
   const monthsNimb: number[] = [];
@@ -29,6 +45,7 @@ function gerarAno(ano: number) {
     const x = Math.floor(seedrandom(String(idx + ano))() * 12);
     monthsNimb.push(x);
   }
+
   const meses: Mes[] = [
     "Caravana",
     "Pomo",
@@ -45,7 +62,7 @@ function gerarAno(ano: number) {
   ].map((mes, i) => {
     let haveNimb: boolean = monthsNimb.includes(i);
 
-    let dayNimb = Math.floor(seedrandom((i + ano).toString())() * 31);
+    let dayNimb = Math.floor(seedrandom((i + ano).toString())() * 32 + 1);
 
     const dias: {
       dia: number;
@@ -54,7 +71,7 @@ function gerarAno(ano: number) {
     }[] = [];
 
     for (let j = 1; j <= 30 + (haveNimb ? 1 : 0); j++) {
-      dias.push({ dia: j, nimb: haveNimb && j === dayNimb, diaDaSemana: 0});
+      dias.push({ dia: j, nimb: haveNimb && j === dayNimb, diaDaSemana: 0 });
     }
 
     return {
@@ -62,23 +79,11 @@ function gerarAno(ano: number) {
       dias,
     };
   });
+  return GerarDiasdaSemana(meses);
+}
 
-  let diaDaSemana = 0;
-  for (let i = 0; i < meses.length; i++) {
-    for (let j = 0; j < meses[i].dias.length; j++) {
-      meses[i].dias[j].diaDaSemana = diaDaSemana;
-      if (diaDaSemana === 6) {
-        diaDaSemana = 0;
-      } else {
-        diaDaSemana++;
-      }
-    }
-  }
-
-  return {
-    ano,
-    meses,
-  };
+function gerarAno(ano: number) {
+  return { ano, meses: GerarMeses(ano) };
 }
 
 export function Calendar() {
