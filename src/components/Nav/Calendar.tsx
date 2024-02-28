@@ -50,10 +50,11 @@ function gerarAno(ano: number) {
     const dias: {
       dia: number;
       nimb: boolean;
+      diaDaSemana: number;
     }[] = [];
 
     for (let j = 1; j <= 30 + (haveNimb ? 1 : 0); j++) {
-      dias.push({ dia: j, nimb: haveNimb && j === dayNimb });
+      dias.push({ dia: j, nimb: haveNimb && j === dayNimb, diaDaSemana: 0});
     }
 
     return {
