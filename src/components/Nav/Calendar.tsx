@@ -3,10 +3,6 @@ import {
   Calendar as CalendarIcon,
   ChevronLeft,
   ChevronRight,
-  LucideMoveRight,
-  MoveLeft,
-  MoveRight,
-  MoveRightIcon,
 } from "lucide-react";
 import { NavModal } from "./NavModal";
 import seedrandom from "seedrandom";
@@ -127,6 +123,7 @@ export function Calendar() {
     dia: number;
     descricao: React.ReactNode;
   };
+
   const feriados: Feriado[] = [
     {
       nome: "Dia do Reencontro",
@@ -288,15 +285,25 @@ export function Calendar() {
       ),
     },
   ];
+
   function FeriadoCheck(mes: number, dia: number) {
     return feriados.find(
       (feriado) => feriado.mes === mes && feriado.dia === dia
     );
   }
-  const [diaAtual, setDiaAtual] = React.useState({
-    dia: 1,
-    mes: 1,
-  });
+  interface Dia {
+    dia: number;
+    mes: number;
+  }
+  const [diaAtual, setDiaAtual] = React.useState<Dia>(
+    localStorage.getItem("diaAtual") === null
+      ? {
+          dia: 1,
+          mes: 1,
+        }
+      : (JSON.parse(localStorage.getItem("diaAtual") as string) as Dia)
+  );
+
   const changeDia = (plus: boolean) => {
     let newDia = diaAtual.dia + (plus ? 1 : -1);
     let newMes = diaAtual.mes;
@@ -318,6 +325,11 @@ export function Calendar() {
     }
     setDiaAtual({ dia: newDia, mes: newMes });
   };
+
+  React.useEffect(() => {
+    localStorage.setItem("diaAtual", JSON.stringify(diaAtual));
+  }, [diaAtual]);
+
   const changeDiaInput = (
     e: React.ChangeEvent<HTMLInputElement>,
     isDay: boolean
@@ -386,14 +398,18 @@ export function Calendar() {
               sx={{ width: "3rem" }}
               type="number"
               value={diaAtual.dia}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeDiaInput(e, true)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                changeDiaInput(e, true)
+              }
             />
             <p>/</p>
             <Input
               sx={{ width: "3rem" }}
               type="number"
               value={diaAtual.mes}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeDiaInput(e, false)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                changeDiaInput(e, false)
+              }
             />
           </div>
         </div>
