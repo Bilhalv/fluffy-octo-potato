@@ -1,8 +1,16 @@
 import React from "react";
-import { Calendar as CalendarIcon } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  ChevronLeft,
+  ChevronRight,
+  LucideMoveRight,
+  MoveLeft,
+  MoveRight,
+  MoveRightIcon,
+} from "lucide-react";
 import { NavModal } from "./NavModal";
 import seedrandom from "seedrandom";
-import { Input, Tooltip } from "@mui/material";
+import { IconButton, Input, Tooltip } from "@mui/material";
 import { DefaultPopover } from "../Gerais/Popovers";
 
 interface Dia {
@@ -22,7 +30,7 @@ interface Ano {
 }
 
 function getMoonPhase(year: number, month: number, day: number) {
-  let r = day/7
+  let r = day / 7;
   r = Math.floor(r + 0.5) % 30;
   let moon = r < 0 ? r + 30 : r;
   let moonPhases = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘", "🌑"];
@@ -285,6 +293,70 @@ export function Calendar() {
       (feriado) => feriado.mes === mes && feriado.dia === dia
     );
   }
+  const [diaAtual, setDiaAtual] = React.useState({
+    dia: 1,
+    mes: 1,
+  });
+  const changeDia = (plus: boolean) => {
+    let newDia = diaAtual.dia + (plus ? 1 : -1);
+    let newMes = diaAtual.mes;
+    const MaxDiaAtual = ano.meses[diaAtual.mes - 1].dias.length;
+    if (newDia > MaxDiaAtual && newMes < 12) {
+      newDia = 1;
+      newMes++;
+    } else if (newDia < 1 && newMes > 1) {
+      newMes--;
+      newDia = ano.meses[newMes - 1].dias.length;
+    } else if (newDia < 1 && newMes === 1) {
+      newMes = 12;
+      setAno(gerarAno(ano.ano - 1));
+      newDia = ano.meses[11].dias.length;
+    } else if (newDia > MaxDiaAtual && newMes >= 12) {
+      newMes = 1;
+      setAno(gerarAno(ano.ano + 1));
+      newDia = 1;
+    }
+    setDiaAtual({ dia: newDia, mes: newMes });
+  };
+  const changeDiaInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    isDay: boolean
+  ) => {
+    let newDia = isDay ? parseInt(e.target.value) : diaAtual.dia;
+    let newMes = isDay ? diaAtual.mes : parseInt(e.target.value);
+    const MaxDiaAtual = ano.meses[diaAtual.mes - 1].dias.length;
+    const MaxMesAtual = 12;
+    if (isDay) {
+      if (newDia > MaxDiaAtual) {
+        newDia = MaxDiaAtual;
+        newMes++;
+        if (newMes > MaxMesAtual) {
+          newMes = 1;
+          setAno(gerarAno(ano.ano + 1));
+          newDia = 1;
+        }
+      } else if (newDia < 1) {
+        newDia = 1;
+        newMes--;
+        if (newMes < 1) {
+          newMes = 12;
+          setAno(gerarAno(ano.ano - 1));
+          newDia = ano.meses[11].dias.length;
+        }
+      }
+    } else {
+      if (newMes > MaxMesAtual) {
+        newMes = 1;
+        setAno(gerarAno(ano.ano + 1));
+        newDia = 1;
+      } else if (newMes < 1) {
+        newMes = 12;
+        setAno(gerarAno(ano.ano - 1));
+        newDia = ano.meses[11].dias.length;
+      }
+    }
+    setDiaAtual({ dia: newDia, mes: newMes });
+  };
   return (
     <NavModal icon={<CalendarIcon size={24} />} tooltip="Calendar">
       <h2 className="text-center text-2xl">Calendário</h2>
@@ -295,6 +367,48 @@ export function Calendar() {
         value={ano.ano}
         onChange={(e) => setAno(gerarAno(parseInt(e.target.value)))}
       />
+      <div className="flex justify-between my-4 text-white">
+        <IconButton
+          onClick={() => changeDia(false)}
+          sx={{
+            color: "white",
+            "&:hover": {
+              backgroundColor: "rgba(255,0,0,0.25)",
+            },
+          }}
+        >
+          <ChevronLeft />
+        </IconButton>
+        <div className="">
+          <p className="text-center w-fit mx-auto">Dia atual</p>
+          <div className="flex gap-5">
+            <Input
+              sx={{ width: "3rem" }}
+              type="number"
+              value={diaAtual.dia}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeDiaInput(e, true)}
+            />
+            <p>/</p>
+            <Input
+              sx={{ width: "3rem" }}
+              type="number"
+              value={diaAtual.mes}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeDiaInput(e, false)}
+            />
+          </div>
+        </div>
+        <IconButton
+          onClick={() => changeDia(true)}
+          sx={{
+            color: "white",
+            "&:hover": {
+              backgroundColor: "rgba(255,0,0,0.25)",
+            },
+          }}
+        >
+          <ChevronRight />
+        </IconButton>
+      </div>
       <div className="flex flex-col overflow-scroll max-h-96 gap-2">
         {ano.meses.map((mes, i) => (
           <div key={i} className="w-full bg-white/75 rounded-xl p-4">
@@ -329,7 +443,13 @@ export function Calendar() {
                         dia.nimb || FeriadoCheck(j + 1, dia.dia)
                           ? "text-white hover:scale-110 transition-all"
                           : ""
-                      }`}
+                      } ${
+                        dia.dia === diaAtual.dia && i + 1 === diaAtual.mes
+                          ? "bg-red-600 scale-110 transition-all rounded-3xl"
+                          : ""
+                      }
+                      
+                      `}
                     >
                       {dia.nimb || FeriadoCheck(j + 1, dia.dia) ? (
                         <DefaultPopover
