@@ -2,7 +2,7 @@ import React from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { NavModal } from "./NavModal";
 import seedrandom from "seedrandom";
-import { Input } from "@mui/material";
+import { Input, Tooltip } from "@mui/material";
 import { DefaultPopover } from "../Gerais/Popovers";
 
 interface Dia {
@@ -19,6 +19,30 @@ interface Mes {
 interface Ano {
   ano: number;
   meses: Mes[];
+}
+
+function getMoonPhase(year: number, month: number, day: number) {
+  let r = day/7
+  r = Math.floor(r + 0.5) % 30;
+  let moon = r < 0 ? r + 30 : r;
+  let moonPhases = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘", "🌑"];
+  let moonPhasesLabel = [
+    "Nova",
+    "Crescente Côncava",
+    "Crescente",
+    "Crescente Convexa",
+    "Cheia",
+    "Minguante Convexa",
+    "Minguante",
+    "Minguante Côncava",
+    "Nova",
+  ];
+  let finalMoon = {
+    moon: moon,
+    emoji: moonPhases[moon],
+    label: moonPhasesLabel[moon],
+  };
+  return finalMoon;
 }
 
 function GerarDiasdaSemana(mes: Mes[]) {
@@ -312,7 +336,11 @@ export function Calendar() {
                           titulo={String(dia.dia)}
                           content={
                             <div className="text-justify px-4 py-2 text-xs">
-                              {dia.nimb && <p className="text-center text-sm font-bold font-tormenta">Dia de Nimb! O rei da aleatoriedade!!🎲</p>}
+                              {dia.nimb && (
+                                <p className="text-center text-sm font-bold font-tormenta">
+                                  Dia de Nimb! O rei da aleatoriedade!!🎲
+                                </p>
+                              )}
                               {FeriadoCheck(j + 1, dia.dia) && (
                                 <p>
                                   <b className="text-sm font-tormenta">
@@ -327,6 +355,11 @@ export function Calendar() {
                       ) : (
                         <>{dia.dia}</>
                       )}
+                      <Tooltip title={getMoonPhase(ano.ano, i, dia.dia).label}>
+                        <p className="text-xs">
+                          {getMoonPhase(ano.ano, i, dia.dia).emoji}
+                        </p>
+                      </Tooltip>
                     </td>
                     {dia.diaDaSemana === 6 && <tr></tr>}
                   </>
