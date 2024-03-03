@@ -13,6 +13,7 @@ interface Dia {
   dia: number;
   nimb: boolean;
   diaDaSemana: number;
+  diaIDX: number;
 }
 
 interface Mes {
@@ -25,10 +26,12 @@ interface Ano {
   meses: Mes[];
 }
 
-function getMoonPhase(year: number, month: number, day: number) {
-  let r = day / 7;
-  r = Math.floor(r + 0.5) % 30;
-  let moon = r < 0 ? r + 30 : r;
+function getMoonPhase(year: number, day: Dia) {
+  let maxDiasAno = GerarMeses(year).reduce(
+    (acc, mes) => acc + mes.dias.length,
+    0
+  );
+  let moon = Math.floor((maxDiasAno / 7) * (day.diaIDX / maxDiasAno)) % 8;
   let moonPhases = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘", "🌑"];
   let moonPhasesLabel = [
     "Nova",
@@ -75,6 +78,8 @@ function GerarMeses(ano: number) {
     monthsNimb.push(x);
   }
 
+  let dayIDX = 0;
+
   const meses: Mes[] = [
     "Caravana",
     "Pomo",
@@ -93,14 +98,16 @@ function GerarMeses(ano: number) {
 
     let dayNimb = Math.floor(seedrandom((i + ano).toString())() * 32 + 1);
 
-    const dias: {
-      dia: number;
-      nimb: boolean;
-      diaDaSemana: number;
-    }[] = [];
+    const dias: Dia[] = [];
 
     for (let j = 1; j <= 30 + (haveNimb ? 1 : 0); j++) {
-      dias.push({ dia: j, nimb: haveNimb && j === dayNimb, diaDaSemana: 0 });
+      dias.push({
+        dia: j,
+        nimb: haveNimb && j === dayNimb,
+        diaDaSemana: 0,
+        diaIDX: dayIDX,
+      });
+      dayIDX++;
     }
 
     return {
@@ -491,9 +498,9 @@ export function Calendar() {
                       ) : (
                         <>{dia.dia}</>
                       )}
-                      <Tooltip title={getMoonPhase(ano.ano, i, dia.dia).label}>
+                      <Tooltip title={getMoonPhase(ano.ano, dia).label}>
                         <p className="text-xs">
-                          {getMoonPhase(ano.ano, i, dia.dia).emoji}
+                          {getMoonPhase(ano.ano, dia).emoji}
                         </p>
                       </Tooltip>
                     </td>
