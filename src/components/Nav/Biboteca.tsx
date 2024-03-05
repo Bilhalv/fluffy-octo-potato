@@ -6,10 +6,8 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Modal,
   Select,
   Tab,
-  Tabs,
 } from "@mui/material";
 import { Library } from "lucide-react";
 import React from "react";

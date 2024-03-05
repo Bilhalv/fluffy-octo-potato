@@ -22,6 +22,7 @@ import {
 } from "../../data/tables/Regras";
 import { Biboteca } from "./Biboteca";
 import { Calendar } from "./Calendar";
+import { RegrasAdicionais } from "./RegrasAdicionais"
 
 interface fixedContextProps {
   regrasFixadas: regras[];
@@ -94,6 +95,7 @@ export default function Nav() {
             </button>
             <Biboteca />
             <Calendar />
+            <RegrasAdicionais />
             <Tooltip
               id="my-tooltip"
               style={{
